@@ -11,6 +11,57 @@
         --primary-light: rgba(38, 161, 123, 0.1) !important;
     }
     
+    /* Светлая тема - белый фон и темный текст */
+    [data-theme="light"] .login-page,
+    html[data-theme="light"] .login-page,
+    html:not([data-theme="dark"]) .login-page {
+        background: white !important;
+    }
+    
+    [data-theme="light"] .login-page label,
+    html[data-theme="light"] .login-page label,
+    html:not([data-theme="dark"]) .login-page label {
+        color: #333 !important;
+    }
+    
+    [data-theme="light"] .login-page .form-control,
+    html[data-theme="light"] .login-page .form-control,
+    html:not([data-theme="dark"]) .login-page .form-control {
+        background-color: white !important;
+        border: 1px solid #ddd !important;
+        color: #333 !important;
+    }
+    
+    [data-theme="light"] .login-page .form-control:focus,
+    html[data-theme="light"] .login-page .form-control:focus,
+    html:not([data-theme="dark"]) .login-page .form-control:focus {
+        background-color: white !important;
+        border-color: #26A17B !important;
+        color: #333 !important;
+        box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
+    }
+    
+    [data-theme="light"] .login-page .form-control::placeholder,
+    html[data-theme="light"] .login-page .form-control::placeholder,
+    html:not([data-theme="dark"]) .login-page .form-control::placeholder {
+        color: rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    [data-theme="light"] .login-page h1,
+    [data-theme="light"] .login-page h2,
+    [data-theme="light"] .login-page h3,
+    [data-theme="light"] .login-page p,
+    html[data-theme="light"] .login-page h1,
+    html[data-theme="light"] .login-page h2,
+    html[data-theme="light"] .login-page h3,
+    html[data-theme="light"] .login-page p,
+    html:not([data-theme="dark"]) .login-page h1,
+    html:not([data-theme="dark"]) .login-page h2,
+    html:not([data-theme="dark"]) .login-page h3,
+    html:not([data-theme="dark"]) .login-page p {
+        color: #333 !important;
+    }
+    
     /* Применяем primary color ко всем элементам Unfold */
     [data-theme="light"] [data-unfold],
     [data-theme="dark"] [data-unfold],
