@@ -81,6 +81,43 @@ input[type="submit"].default:hover,
     border-color: #1d7a5d !important;
 }
 
+/* Принудительно заменяем фиолетовые цвета в кнопках во всех состояниях */
+.btn-primary,
+.button-primary,
+input[type="submit"],
+button[type="submit"],
+.btn-primary:focus,
+.button-primary:focus,
+input[type="submit"]:focus,
+button[type="submit"]:focus,
+.btn-primary:active,
+.button-primary:active,
+input[type="submit"]:active,
+button[type="submit"]:active,
+.btn-primary:visited,
+.button-primary:visited {
+    background-color: #26A17B !important;
+    background: #26A17B !important;
+    background-image: none !important;
+    border-color: #26A17B !important;
+    color: white !important;
+}
+
+/* Убираем фиолетовые градиенты и фоны из кнопок */
+.btn-primary[style*="purple"],
+.btn-primary[style*="violet"],
+.btn-primary[style*="#667eea"],
+.btn-primary[style*="#764ba2"],
+button[style*="purple"],
+button[style*="violet"],
+input[type="submit"][style*="purple"],
+input[type="submit"][style*="violet"] {
+    background-color: #26A17B !important;
+    background: #26A17B !important;
+    background-image: none !important;
+    border-color: #26A17B !important;
+}
+
 /* Активные ссылки и элементы */
 .nav-sidebar .nav-link.active,
 .nav-sidebar .nav-link:hover,
@@ -99,12 +136,36 @@ a:hover {
     border-color: #26A17B !important;
 }
 
-/* Фокус на полях ввода */
+/* Фокус на полях ввода - принудительно заменяем фиолетовые цвета */
 .form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
 select:focus,
 textarea:focus {
     border-color: #26A17B !important;
     box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
+    outline-color: #26A17B !important;
+    outline: 2px solid #26A17B !important;
+}
+
+/* Убираем фиолетовые цвета из фокуса всех элементов */
+*:focus {
+    outline-color: #26A17B !important;
+}
+
+*[style*="purple"]:focus,
+*[style*="violet"]:focus,
+*[style*="#667eea"]:focus,
+*[style*="#764ba2"]:focus,
+*[style*="#6f42c1"]:focus,
+*[style*="#7c3aed"]:focus {
+    border-color: #26A17B !important;
+    box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
+    outline-color: #26A17B !important;
 }
 
 /* Чекбоксы и радиокнопки */

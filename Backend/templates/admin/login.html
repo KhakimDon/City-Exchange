@@ -89,6 +89,51 @@
         border-color: #1d7a5d !important;
     }
     
+    /* Принудительно заменяем фиолетовые цвета в кнопках */
+    .btn-primary,
+    .button-primary,
+    input[type="submit"],
+    button[type="submit"],
+    .btn-primary:focus,
+    .button-primary:focus,
+    input[type="submit"]:focus,
+    button[type="submit"]:focus,
+    .btn-primary:active,
+    .button-primary:active,
+    input[type="submit"]:active,
+    button[type="submit"]:active {
+        background-color: #26A17B !important;
+        background: #26A17B !important;
+        background-image: none !important;
+        border-color: #26A17B !important;
+        color: white !important;
+    }
+    
+    /* Принудительно заменяем фиолетовые цвета в фокусе инпутов */
+    .form-control:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    textarea:focus,
+    select:focus {
+        border-color: #26A17B !important;
+        box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
+        outline-color: #26A17B !important;
+    }
+    
+    /* Убираем фиолетовые цвета из всех возможных состояний */
+    *:focus {
+        outline-color: #26A17B !important;
+    }
+    
+    *[style*="purple"]:focus,
+    *[style*="violet"]:focus,
+    *[style*="#667eea"]:focus,
+    *[style*="#764ba2"]:focus {
+        border-color: #26A17B !important;
+        box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
+    }
+    
     /* Скрываем логотип на странице входа - все возможные варианты */
     .login-page img,
     .login-page img[src*="logo"],
