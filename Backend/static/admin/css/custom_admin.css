@@ -253,24 +253,39 @@ html[data-theme="dark"] .theme-toggle circle {
 /* Светлая тема - черные лейблы и текст инпутов */
 [data-theme="light"] .login-page label,
 html[data-theme="light"] .login-page label,
-html:not([data-theme="dark"]) .login-page label {
+html:not([data-theme="dark"]) .login-page label,
+[data-theme="light"] .login-page .form-group label,
+html[data-theme="light"] .login-page .form-group label,
+html:not([data-theme="dark"]) .login-page .form-group label {
     color: #000 !important;
+    color: black !important;
 }
 
 [data-theme="light"] .login-page .form-control,
 html[data-theme="light"] .login-page .form-control,
-html:not([data-theme="dark"]) .login-page .form-control {
+html:not([data-theme="dark"]) .login-page .form-control,
+[data-theme="light"] .login-page input[type="text"],
+[data-theme="light"] .login-page input[type="password"],
+[data-theme="light"] .login-page input[type="email"],
+html[data-theme="light"] .login-page input[type="text"],
+html[data-theme="light"] .login-page input[type="password"],
+html[data-theme="light"] .login-page input[type="email"] {
     background-color: white !important;
     border: 1px solid #ddd !important;
     color: #000 !important;
+    color: black !important;
 }
 
 [data-theme="light"] .login-page .form-control:focus,
 html[data-theme="light"] .login-page .form-control:focus,
-html:not([data-theme="dark"]) .login-page .form-control:focus {
+html:not([data-theme="dark"]) .login-page .form-control:focus,
+[data-theme="light"] .login-page input[type="text"]:focus,
+[data-theme="light"] .login-page input[type="password"]:focus,
+[data-theme="light"] .login-page input[type="email"]:focus {
     background-color: white !important;
     border-color: #26A17B !important;
     color: #000 !important;
+    color: black !important;
     box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
 }
 

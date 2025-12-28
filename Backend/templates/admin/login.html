@@ -18,26 +18,43 @@
         background: white !important;
     }
     
+    /* Светлая тема - черные лейблы */
     [data-theme="light"] .login-page label,
     html[data-theme="light"] .login-page label,
-    html:not([data-theme="dark"]) .login-page label {
-        color: #333 !important;
+    html:not([data-theme="dark"]) .login-page label,
+    [data-theme="light"] .login-page .form-group label,
+    html[data-theme="light"] .login-page .form-group label,
+    html:not([data-theme="dark"]) .login-page .form-group label {
+        color: #000 !important;
+        color: black !important;
     }
     
+    /* Светлая тема - черный текст в инпутах */
     [data-theme="light"] .login-page .form-control,
     html[data-theme="light"] .login-page .form-control,
-    html:not([data-theme="dark"]) .login-page .form-control {
+    html:not([data-theme="dark"]) .login-page .form-control,
+    [data-theme="light"] .login-page input[type="text"],
+    [data-theme="light"] .login-page input[type="password"],
+    [data-theme="light"] .login-page input[type="email"],
+    html[data-theme="light"] .login-page input[type="text"],
+    html[data-theme="light"] .login-page input[type="password"],
+    html[data-theme="light"] .login-page input[type="email"] {
         background-color: white !important;
         border: 1px solid #ddd !important;
-        color: #333 !important;
+        color: #000 !important;
+        color: black !important;
     }
     
     [data-theme="light"] .login-page .form-control:focus,
     html[data-theme="light"] .login-page .form-control:focus,
-    html:not([data-theme="dark"]) .login-page .form-control:focus {
+    html:not([data-theme="dark"]) .login-page .form-control:focus,
+    [data-theme="light"] .login-page input[type="text"]:focus,
+    [data-theme="light"] .login-page input[type="password"]:focus,
+    [data-theme="light"] .login-page input[type="email"]:focus {
         background-color: white !important;
         border-color: #26A17B !important;
-        color: #333 !important;
+        color: #000 !important;
+        color: black !important;
         box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
     }
     
@@ -192,16 +209,27 @@
         box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
     }
     
-    /* Скрываем кнопку "Return to site" */
+    /* Скрываем кнопку "Return to site" - все возможные варианты */
     .login-page a[href="/"],
-    .login-page a[href*="/"]:not([href*="/admin/"]):not([href*="login"]),
+    .login-page a[href*="/"]:not([href*="/admin/"]):not([href*="login"]):not([href*="logout"]),
     .login-page .site-link,
     .login-page .return-link,
     .login-page header a[href="/"],
     .login-page [class*="return"],
-    .login-page [class*="site-link"] {
+    .login-page [class*="site-link"],
+    .login-page a:has-text("Return"),
+    .login-page a:has-text("return"),
+    .login-page a:has-text("←"),
+    body.login-page a[href="/"],
+    body.login-page header a[href="/"] {
         display: none !important;
         visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
     
     /* Темная тема - белый текст для "Welcome back to" */
@@ -233,7 +261,13 @@
     [data-theme="dark"] button[aria-label*="theme"] svg,
     html[data-theme="dark"] button[aria-label*="theme"] svg,
     [data-theme="dark"] [class*="theme"] svg,
-    html[data-theme="dark"] [class*="theme"] svg {
+    html[data-theme="dark"] [class*="theme"] svg,
+    [data-theme="dark"] .theme-toggle path,
+    html[data-theme="dark"] .theme-toggle path,
+    [data-theme="dark"] .theme-toggle circle,
+    html[data-theme="dark"] .theme-toggle circle,
+    [data-theme="dark"] .theme-toggle *,
+    html[data-theme="dark"] .theme-toggle * {
         color: white !important;
         fill: white !important;
         stroke: white !important;
@@ -438,34 +472,115 @@
             setTimeout(replacePurpleColors, 500);
         });
         
-        // Переводим "Welcome back to" на русский
-        function translateWelcomeText() {
-            const welcomeTexts = document.querySelectorAll('p, h1, h2, h3, span, div');
-            welcomeTexts.forEach(el => {
-                if (el.textContent && el.textContent.includes('Welcome back to')) {
-                    el.textContent = el.textContent.replace('Welcome back to', 'Добро пожаловать в');
+        // Удаляем кнопку "Return to site"
+        function removeReturnButton() {
+            const returnButtons = document.querySelectorAll('a[href="/"], a:has-text("Return"), a:has-text("return"), a:has-text("←")');
+            returnButtons.forEach(btn => {
+                if (btn.textContent && (btn.textContent.includes('Return') || btn.textContent.includes('return') || btn.textContent.includes('←'))) {
+                    btn.style.display = 'none';
+                    btn.style.visibility = 'hidden';
+                    btn.remove();
                 }
             });
         }
         
-        // Применяем перевод
-        translateWelcomeText();
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', translateWelcomeText);
+        // Переводим "Welcome back to" на русский и делаем белым при темной теме
+        function translateWelcomeText() {
+            const welcomeTexts = document.querySelectorAll('p, h1, h2, h3, span, div, label');
+            welcomeTexts.forEach(el => {
+                if (el.textContent) {
+                    // Переводим текст
+                    if (el.textContent.includes('Welcome back to')) {
+                        el.textContent = el.textContent.replace('Welcome back to', 'Добро пожаловать в');
+                    }
+                    
+                    // Делаем белым при темной теме
+                    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                                   document.documentElement.classList.contains('dark');
+                    if (isDark && (el.textContent.includes('Добро пожаловать в') || el.textContent.includes('Welcome'))) {
+                        el.style.color = 'white';
+                    }
+                }
+            });
         }
+        
+        // Исправляем цвета лейблов и инпутов
+        function fixInputColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                          document.documentElement.classList.contains('dark');
+            
+            const labels = document.querySelectorAll('.login-page label');
+            labels.forEach(label => {
+                if (isDark) {
+                    label.style.color = 'white';
+                } else {
+                    label.style.color = '#000';
+                    label.style.color = 'black';
+                }
+            });
+            
+            const inputs = document.querySelectorAll('.login-page input[type="text"], .login-page input[type="password"], .login-page input[type="email"]');
+            inputs.forEach(input => {
+                if (isDark) {
+                    input.style.color = 'white';
+                    input.style.backgroundColor = '#2d3136';
+                } else {
+                    input.style.color = '#000';
+                    input.style.color = 'black';
+                    input.style.backgroundColor = 'white';
+                }
+            });
+        }
+        
+        // Исправляем иконки переключателя темы
+        function fixThemeToggleIcons() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                          document.documentElement.classList.contains('dark');
+            
+            const themeToggles = document.querySelectorAll('.theme-toggle, button[aria-label*="theme"], [class*="theme-toggle"]');
+            themeToggles.forEach(toggle => {
+                const svgs = toggle.querySelectorAll('svg, path, circle');
+                svgs.forEach(svg => {
+                    if (isDark) {
+                        svg.style.color = 'white';
+                        svg.style.fill = 'white';
+                        svg.style.stroke = 'white';
+                    }
+                });
+            });
+        }
+        
+        // Применяем все функции
+        function applyAllFixes() {
+            removeReturnButton();
+            translateWelcomeText();
+            fixInputColors();
+            fixThemeToggleIcons();
+        }
+        
+        // Применяем сразу
+        applyAllFixes();
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', applyAllFixes);
+        }
+        
         window.addEventListener('load', function() {
-            setTimeout(translateWelcomeText, 100);
-            setTimeout(translateWelcomeText, 500);
+            setTimeout(applyAllFixes, 100);
+            setTimeout(applyAllFixes, 500);
+            setTimeout(applyAllFixes, 1000);
         });
         
-        // Наблюдаем за изменениями для перевода
-        const translateObserver = new MutationObserver(function(mutations) {
-            translateWelcomeText();
+        // Наблюдаем за изменениями
+        const fixObserver = new MutationObserver(function(mutations) {
+            applyAllFixes();
         });
-        translateObserver.observe(document.body, {
+        fixObserver.observe(document.body, {
             childList: true,
             subtree: true,
-            characterData: true
+            characterData: true,
+            attributes: true,
+            attributeFilter: ['data-theme', 'class']
         });
     })();
 </script>
