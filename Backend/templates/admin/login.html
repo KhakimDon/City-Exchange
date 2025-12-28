@@ -250,11 +250,63 @@
         // Наблюдаем за изменениями DOM
         const observer = new MutationObserver(function(mutations) {
             removeLogo();
+            replacePurpleColors();
         });
         observer.observe(document.body, {
             childList: true,
             subtree: true,
             attributes: true
+        });
+        
+        // Функция для замены фиолетовых цветов на зеленый
+        function replacePurpleColors() {
+            // Заменяем цвета в кнопках
+            const buttons = document.querySelectorAll('button, input[type="submit"], .btn-primary, .button-primary');
+            buttons.forEach(btn => {
+                const style = window.getComputedStyle(btn);
+                const bgColor = style.backgroundColor;
+                const borderColor = style.borderColor;
+                
+                // Проверяем, если цвет фиолетовый
+                if (bgColor.includes('rgb(102, 126, 234)') || 
+                    bgColor.includes('rgb(118, 75, 162)') ||
+                    bgColor.includes('rgb(139, 92, 246)') ||
+                    bgColor.includes('rgb(147, 51, 234)') ||
+                    bgColor.includes('#667eea') ||
+                    bgColor.includes('#764ba2') ||
+                    bgColor.includes('#6f42c1') ||
+                    bgColor.includes('#7c3aed')) {
+                    btn.style.backgroundColor = '#26A17B';
+                    btn.style.background = '#26A17B';
+                    btn.style.backgroundImage = 'none';
+                }
+                
+                if (borderColor.includes('rgb(102, 126, 234)') || 
+                    borderColor.includes('rgb(118, 75, 162)') ||
+                    borderColor.includes('#667eea') ||
+                    borderColor.includes('#764ba2')) {
+                    btn.style.borderColor = '#26A17B';
+                }
+            });
+            
+            // Заменяем цвета в фокусе инпутов
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '#26A17B';
+                    this.style.boxShadow = '0 0 0 3px rgba(38, 161, 123, 0.1)';
+                    this.style.outlineColor = '#26A17B';
+                });
+            });
+        }
+        
+        // Применяем замену цветов
+        replacePurpleColors();
+        
+        // Применяем после загрузки
+        window.addEventListener('load', function() {
+            setTimeout(replacePurpleColors, 100);
+            setTimeout(replacePurpleColors, 500);
         });
     })();
 </script>
