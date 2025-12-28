@@ -24,6 +24,55 @@
         color: #26A17B !important;
     }
     
+    /* Заменяем ВСЕ фиолетовые и розовые цвета на #26A17B */
+    *[style*="purple"],
+    *[style*="violet"],
+    *[style*="#667eea"],
+    *[style*="#764ba2"],
+    *[style*="#6f42c1"],
+    *[style*="#7c3aed"],
+    *[style*="#8b5cf6"],
+    *[style*="#9333ea"],
+    *[style*="#a855f7"],
+    *[style*="#c084fc"],
+    *[style*="#d946ef"],
+    *[style*="#ec4899"],
+    *[style*="#f472b6"],
+    *[style*="rgb(102, 126, 234)"],
+    *[style*="rgb(118, 75, 162)"],
+    *[style*="rgb(139, 92, 246)"],
+    *[style*="rgb(147, 51, 234)"],
+    *[style*="rgb(168, 85, 247)"],
+    *[style*="rgb(192, 132, 252)"],
+    *[style*="rgb(217, 70, 239)"],
+    *[style*="rgb(236, 72, 153)"] {
+        color: #26A17B !important;
+        background-color: #26A17B !important;
+        border-color: #26A17B !important;
+    }
+    
+    /* Заменяем фиолетовые цвета в тексте */
+    h1, h2, h3, h4, h5, h6,
+    p, span, div, a,
+    [class*="text-primary"],
+    [class*="text-purple"],
+    [class*="text-violet"] {
+        color: inherit !important;
+    }
+    
+    /* Принудительно заменяем фиолетовый цвет в заголовках */
+    h1[style*="purple"],
+    h2[style*="purple"],
+    h3[style*="purple"],
+    h1[style*="violet"],
+    h2[style*="violet"],
+    h3[style*="violet"],
+    h1[style*="#667eea"],
+    h2[style*="#667eea"],
+    h3[style*="#667eea"] {
+        color: #26A17B !important;
+    }
+    
     .btn-primary,
     .button-primary,
     input[type="submit"].default,
