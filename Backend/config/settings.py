@@ -21,16 +21,17 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-this-in-production'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-# ALLOWED_HOSTS для локального бэкенда с туннелем
-ALLOWED_HOSTS = [
-    '85858ce02571.ngrok-free.app',  # Текущий ngrok URL
-    '94bac74dc099.ngrok-free.app',  # Предыдущий (на случай если переключитесь)
-    'localhost',
-    '127.0.0.1',
-    'jocular-squirrel-8dd574.netlify.app'
-]
-# Также можно использовать переменную окружения:
-# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS - берется из переменной окружения или использует значения по умолчанию
+ALLOWED_HOSTS_ENV = os.getenv('ALLOWED_HOSTS', '')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_ENV.split(',') if host.strip()]
+else:
+    # Значения по умолчанию для разработки
+    ALLOWED_HOSTS = [
+        'localhost',
+        '127.0.0.1',
+        '178.72.149.8',  # IP сервера
+    ]
 
 # Telegram Bot Token
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
