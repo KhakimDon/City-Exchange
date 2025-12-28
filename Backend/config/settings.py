@@ -204,6 +204,8 @@ UNFOLD = {
     "LOGIN": {
         "image": "/static/admin/css/logo.png",
         "redirect_after": None,
+        "redirect_after_login": "/admin/",
+        "redirect_after_logout": "/admin/login/",
     },
     "STYLES": [
         lambda request: "/static/admin/css/custom_admin.css",

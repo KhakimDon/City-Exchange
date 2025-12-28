@@ -1,6 +1,19 @@
 /* Custom Admin CSS for City Exchange */
 /* Используем цвета по умолчанию Unfold */
 
+/* Скрываем кнопку "Return to site" на странице входа */
+.login-page a[href="/"],
+.login-page a[href="/"]:not(.logo),
+.login-page .site-link,
+.login-page .return-link,
+.login-page .back-link,
+.login-page header a[href="/"],
+body.login-page a[href="/"]:not([class*="logo"]),
+body.login-page .unfold-header a[href="/"]:not([class*="logo"]) {
+    display: none !important;
+    visibility: hidden !important;
+}
+
 /* Логотип в Unfold - верхний левый угол */
 header img[src*="logo"],
 header [class*="brand"] img,
