@@ -52,12 +52,6 @@
         margin: 0 auto !important;
     }
     
-    /* Убираем все рамки и границы */
-    .login-box * {
-        border: none !important;
-        outline: none !important;
-    }
-    
     .login-box .card,
     .login-box .card-body {
         background: transparent !important;
@@ -65,12 +59,14 @@
         box-shadow: none !important;
     }
     
-    /* Поля ввода - серый фон, без видимой рамки */
+    /* Поля ввода - СЕРЫЙ фон, НЕ зеленый! */
     .form-control,
     input[type="text"],
     input[type="password"],
     input[type="email"] {
         background-color: #2d3136 !important;
+        background: #2d3136 !important;
+        background-image: none !important;
         border: none !important;
         border-radius: 8px !important;
         color: white !important;
@@ -83,18 +79,11 @@
     input[type="password"]:focus,
     input[type="email"]:focus {
         background-color: #2d3136 !important;
+        background: #2d3136 !important;
         border: none !important;
         color: white !important;
         box-shadow: none !important;
         outline: none !important;
-    }
-    
-    /* Убираем зеленый фон с полей ввода, если он был применен */
-    .form-control[style*="#26A17B"],
-    input[type="text"][style*="#26A17B"],
-    input[type="password"][style*="#26A17B"] {
-        background-color: #2d3136 !important;
-        background: #2d3136 !important;
     }
     
     .form-control::placeholder {
@@ -110,7 +99,7 @@
         font-size: 14px !important;
     }
     
-    /* Кнопка входа - зеленый фон #26A17B */
+    /* Кнопка входа - ЗЕЛЕНЫЙ цвет #26A17B */
     .btn-primary,
     input[type="submit"],
     button[type="submit"] {
@@ -136,103 +125,14 @@
         color: white !important;
     }
     
-    /* Заменяем все фиолетовые цвета на #26A17B */
-    .login-box-msg h2,
-    .login-box-msg .admin-title,
-    .login-box-msg p strong,
-    .login-box-msg [class*="purple"],
-    .login-box-msg [style*="purple"],
-    .login-box-msg [style*="violet"],
-    .login-page [style*="purple"],
-    .login-page [style*="violet"],
-    .login-page .text-primary,
-    .login-page [class*="primary"]:not(.btn-primary):not(.form-control) {
-        color: #26A17B !important;
-    }
-    
-    /* Заменяем фиолетовый фон ТОЛЬКО кнопок на зеленый (не полей ввода!) */
-    .login-page .btn-primary,
-    .login-page input[type="submit"],
-    .login-page button[type="submit"] {
-        background-color: #26A17B !important;
-        background: #26A17B !important;
-        background-image: none !important;
-        border-color: #26A17B !important;
-    }
-    
-    .login-page .btn-primary:hover,
-    .login-page input[type="submit"]:hover,
-    .login-page button[type="submit"]:hover {
-        background-color: #1d7a5d !important;
-        background: #1d7a5d !important;
-        border-color: #1d7a5d !important;
-    }
-    
-    /* Поля ввода НЕ должны быть зелеными - только серые! */
-    .login-page .form-control,
-    .login-page input[type="text"],
-    .login-page input[type="password"],
-    .login-page input[type="email"] {
-        background-color: #2d3136 !important;
-        background: #2d3136 !important;
-        background-image: none !important;
-    }
-    
-    /* Переопределяем все возможные фиолетовые цвета от Unfold */
-    .login-page,
-    .login-page * {
-        --primary-color: #26A17B !important;
-        --primary-hover: #1d7a5d !important;
-    }
-    
-    /* Принудительно заменяем фиолетовые цвета в любых элементах */
-    .login-page [style*="rgb(102, 126, 234)"],
-    .login-page [style*="rgb(118, 75, 162)"],
-    .login-page [style*="#667eea"],
-    .login-page [style*="#764ba2"],
-    .login-page [style*="#6f42c1"],
-    .login-page [style*="#7c3aed"],
-    .login-page [style*="#8b5cf6"] {
-        color: #26A17B !important;
-        background-color: #26A17B !important;
-        border-color: #26A17B !important;
-    }
-    
-    /* Специфично для текста "City Exchange Admin" и всех заголовков */
+    /* Заменяем фиолетовые цвета в ТЕКСТЕ на зеленый (НЕ в полях ввода!) */
     .login-box-msg h2,
     .login-box-msg h3,
     .login-box-msg strong,
     .login-box-msg b,
-    .login-box-msg span[style*="purple"],
-    .login-box-msg span[style*="violet"],
     .login-box-msg p strong,
-    .login-box-msg p em,
     .login-box-msg [class*="text-primary"],
-    .login-box-msg [class*="primary"] {
-        color: #26A17B !important;
-    }
-    
-    /* Принудительно заменяем фиолетовые цвета в любых элементах */
-    .login-page [style*="rgb(102, 126, 234)"],
-    .login-page [style*="rgb(118, 75, 162)"],
-    .login-page [style*="#667eea"],
-    .login-page [style*="#764ba2"],
-    .login-page [style*="#6f42c1"],
-    .login-page [style*="#7c3aed"],
-    .login-page [style*="#8b5cf6"] {
-        color: #26A17B !important;
-        background-color: #26A17B !important;
-        border-color: #26A17B !important;
-    }
-    
-    /* Специфично для текста "City Exchange Admin" */
-    .login-box-msg h2,
-    .login-box-msg h3,
-    .login-box-msg strong,
-    .login-box-msg b,
-    .login-box-msg span[style*="purple"],
-    .login-box-msg span[style*="violet"],
-    .login-box-msg p strong {
+    .login-box-msg [class*="primary"]:not(.btn-primary):not(.form-control) {
         color: #26A17B !important;
     }
     
@@ -249,7 +149,7 @@
     
     /* Адаптивность */
     @media (max-width: 480px) {
-    .login-box {
+        .login-box {
             padding: 0 10px !important;
         }
     }
