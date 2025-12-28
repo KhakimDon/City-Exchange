@@ -411,42 +411,20 @@ body {
     display: none !important;
 }
 
-/* Логотип и текст над контейнером формы входа */
+/* Логотип и текст над контейнером формы входа - СКРЫТЫ */
 .login-page {
     position: relative !important;
-    padding-top: 200px !important;
+    padding-top: 0 !important;
 }
 
 .login-page::before {
-    content: '' !important;
-    display: block !important;
-    background-image: url('logo.png') !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    height: 80px !important;
-    width: 180px !important;
-    margin: 0 auto 20px auto !important;
-    position: absolute !important;
-    top: 50px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    z-index: 1000 !important;
+    display: none !important;
+    content: none !important;
 }
 
 .login-page::after {
-    content: 'City Exchange' !important;
-    display: block !important;
-    color: white !important;
-    font-size: 32px !important;
-    font-weight: bold !important;
-    text-align: center !important;
-    position: absolute !important;
-    top: 140px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    z-index: 1000 !important;
-    width: 100% !important;
+    display: none !important;
+    content: none !important;
 }
 
 /* Контейнер формы - ниже логотипа и текста */
