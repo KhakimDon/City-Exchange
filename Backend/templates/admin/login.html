@@ -39,5 +39,20 @@
         background-color: #1d7a5d !important;
         border-color: #1d7a5d !important;
     }
+    
+    /* Скрываем логотип на странице входа */
+    .login-page img,
+    .login-page img[src*="logo"],
+    .login-page img[src*="Logo"],
+    .login-page [class*="logo"] img,
+    .login-page [class*="brand"] img,
+    .login-page header img,
+    .login-page .unfold-header img,
+    .login-page .login-box-msg img,
+    .login-page .brand-image {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
 </style>
 {% endblock %}
