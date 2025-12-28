@@ -1,0 +1,62 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    /* Контейнер для логотипа и текста над формой */
+    .login-header-custom {
+        text-align: center !important;
+        padding: 40px 0 20px 0 !important;
+        position: relative !important;
+        z-index: 1000 !important;
+    }
+    
+    .login-logo-custom {
+        display: block !important;
+        margin: 0 auto 20px auto !important;
+        height: 80px !important;
+        width: auto !important;
+        max-width: 200px !important;
+    }
+    
+    .login-title-custom {
+        color: white !important;
+        font-size: 32px !important;
+        font-weight: bold !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Скрываем стандартный заголовок внутри формы */
+    .login-box-msg h1 {
+        display: none !important;
+    }
+    
+    .login-box-msg h1 i,
+    .login-box-msg h1 .fa,
+    .login-box-msg h1 .fas,
+    .login-box-msg h1 .brand-image {
+        display: none !important;
+    }
+    
+    .login-box-msg::before {
+        display: none !important;
+    }
+    
+    /* Убираем отступы у формы, так как логотип теперь в отдельном блоке */
+    .login-box {
+        margin-top: 0 !important;
+    }
+</style>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login-page{% endblock %}
+
+{% block content %}
+<div class="login-header-custom">
+    <img src="{% static 'admin/css/logo.png' %}" alt="City Exchange" class="login-logo-custom">
+    <h1 class="login-title-custom">City Exchange</h1>
+</div>
+{{ block.super }}
+{% endblock %}

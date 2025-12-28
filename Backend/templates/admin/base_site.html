@@ -1,0 +1,399 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+/* КРИТИЧЕСКИ ВАЖНО: Принудительное переопределение белого фона селекторов */
+/* Эти стили загружаются последними и имеют максимальный приоритет */
+/* Переопределяем ВСЕ возможные классы и состояния */
+select,
+select.form-control,
+select[class],
+select[id],
+.form-control select,
+.form-select,
+select.form-control.form-control,
+select.form-control:focus,
+select.form-control:hover,
+select:focus,
+select:hover,
+select:active,
+select:visited,
+select:enabled,
+select:disabled,
+select[disabled],
+select[readonly],
+.admin select,
+.content-wrapper select,
+.form-row select,
+.field-box select,
+table select,
+#content select,
+.module select,
+.filtered select,
+.changelist-filter select,
+form select,
+.form select,
+.field select,
+.inline-group select,
+.inline-related select,
+.related-widget-wrapper select {
+    background: #1E232A !important;
+    background-color: #1E232A !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.75rem center !important;
+    background-size: 12px 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Убираем стандартную стрелку браузера полностью */
+select::-ms-expand {
+    display: none !important;
+}
+
+select::-webkit-inner-spin-button,
+select::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+/* Убираем лишние border и стрелки от других библиотек */
+select::before,
+select::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Убираем лишние border от wrapper элементов и контейнеров */
+.select2-container,
+.select2-selection,
+.select2-selection__rendered,
+.select2-dropdown,
+.select2-results,
+.changelist-filter,
+.filtered,
+.field-box,
+.form-row,
+.inline-group {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Убираем двойные border у селекторов в фильтрах */
+.changelist-filter select,
+.filtered select {
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Убираем лишние стрелки и иконки */
+select::-ms-expand {
+    display: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Убираем стандартные элементы управления браузера */
+select::-webkit-inner-spin-button,
+select::-webkit-outer-spin-button,
+select::-webkit-search-cancel-button,
+select::-webkit-search-decoration {
+    -webkit-appearance: none !important;
+    display: none !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+}
+
+select:hover,
+select.form-control:hover,
+select:focus,
+select.form-control:focus,
+select:active,
+select.form-control:active {
+    background: #1E232A !important;
+    background-color: #1E232A !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.75rem center !important;
+    background-size: 12px 12px !important;
+}
+
+select:focus,
+select.form-control:focus {
+    border-color: #26A17B !important;
+    box-shadow: 0 0 0 0.2rem rgba(38, 161, 123, 0.25) !important;
+}
+
+select option,
+select option:hover,
+select option:focus,
+select option:checked,
+select option:selected {
+    background: #1E232A !important;
+    background-color: #1E232A !important;
+    color: white !important;
+}
+
+select option:checked,
+select option:selected {
+    background: #26A17B !important;
+    background-color: #26A17B !important;
+    color: white !important;
+}
+</style>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script>
+(function() {
+    'use strict';
+    
+    let isApplying = false;
+    let lastCheckTime = 0;
+    const CHECK_INTERVAL = 200; // Проверяем каждые 200мс
+    
+    // Функция для принудительного применения стилей к селекторам
+    function applySelectStyles(force) {
+        const now = Date.now();
+        if (isApplying || (!force && now - lastCheckTime < CHECK_INTERVAL)) return;
+        
+        isApplying = true;
+        lastCheckTime = now;
+        
+        try {
+            const selects = document.querySelectorAll('select');
+            selects.forEach(function(select) {
+                if (select && select.nodeType === 1) {
+                    const computedStyle = window.getComputedStyle(select);
+                    const currentBg = computedStyle.backgroundColor;
+                    const bgColor = currentBg.toLowerCase();
+                    
+                    // Проверяем, если фон белый или светлый - применяем стили
+                    const isWhite = bgColor.includes('rgb(255') || 
+                                   bgColor.includes('rgb(254') || 
+                                   bgColor.includes('#fff') || 
+                                   bgColor.includes('white') ||
+                                   (bgColor !== 'rgb(30, 35, 42)' && bgColor !== '#1e232a');
+                    
+                    if (isWhite || force) {
+                        // Принудительно применяем стили через inline стили
+                        select.style.cssText += ';background: #1E232A !important;background-color: #1E232A !important;';
+                        select.style.setProperty('background', '#1E232A', 'important');
+                        select.style.setProperty('background-color', '#1E232A', 'important');
+                        select.style.setProperty('background-image', 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23ffffff\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")', 'important');
+                        select.style.setProperty('background-repeat', 'no-repeat', 'important');
+                        select.style.setProperty('background-position', 'right 0.75rem center', 'important');
+                        select.style.setProperty('background-size', '12px 12px', 'important');
+                        select.style.setProperty('color', 'white', 'important');
+                        select.style.setProperty('appearance', 'none', 'important');
+                        select.style.setProperty('-webkit-appearance', 'none', 'important');
+                        select.style.setProperty('-moz-appearance', 'none', 'important');
+                        select.style.setProperty('outline', 'none', 'important');
+                        select.style.setProperty('box-shadow', 'none', 'important');
+                        select.style.setProperty('-webkit-box-shadow', 'none', 'important');
+                        select.style.setProperty('-moz-box-shadow', 'none', 'important');
+                        select.style.setProperty('border', '1px solid rgba(255, 255, 255, 0.2)', 'important');
+                        select.style.setProperty('border-width', '1px', 'important');
+                        select.style.setProperty('border-style', 'solid', 'important');
+                        select.style.setProperty('border-color', 'rgba(255, 255, 255, 0.2)', 'important');
+                        select.style.setProperty('border-top', '1px solid rgba(255, 255, 255, 0.2)', 'important');
+                        select.style.setProperty('border-right', '1px solid rgba(255, 255, 255, 0.2)', 'important');
+                        select.style.setProperty('border-bottom', '1px solid rgba(255, 255, 255, 0.2)', 'important');
+                        select.style.setProperty('border-left', '1px solid rgba(255, 255, 255, 0.2)', 'important');
+                        
+                        // Сохраняем данные-атрибут для отслеживания
+                        select.setAttribute('data-custom-bg', '1E232A');
+                    }
+                }
+            });
+        } catch (e) {
+            console.warn('applySelectStyles error:', e);
+        } finally {
+            isApplying = false;
+        }
+    }
+    
+    // Функция для отслеживания изменений классов
+    function watchForClassChanges() {
+        if (!document.body) return;
+        
+        try {
+            const observer = new MutationObserver(function(mutations) {
+                let needsUpdate = false;
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes') {
+                        if (mutation.attributeName === 'class' || mutation.attributeName === 'style') {
+                            const target = mutation.target;
+                            if (target && target.tagName === 'SELECT') {
+                                needsUpdate = true;
+                            }
+                        }
+                    } else if (mutation.addedNodes.length > 0) {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.nodeType === 1 && (node.tagName === 'SELECT' || node.querySelectorAll('select').length > 0)) {
+                                needsUpdate = true;
+                            }
+                        });
+                    }
+                });
+                if (needsUpdate) {
+                    setTimeout(function() { applySelectStyles(true); }, 50);
+                }
+            });
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['class', 'style']
+            });
+        } catch (e) {
+            console.warn('MutationObserver error:', e);
+        }
+    }
+    
+    // Применяем стили сразу
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            applySelectStyles(true);
+            watchForClassChanges();
+        });
+    } else {
+        applySelectStyles(true);
+        watchForClassChanges();
+    }
+    
+    // Применяем стили после полной загрузки
+    window.addEventListener('load', function() {
+        setTimeout(function() { applySelectStyles(true); }, 100);
+        setTimeout(function() { applySelectStyles(true); }, 500);
+        setTimeout(function() { applySelectStyles(true); }, 1000);
+    });
+    
+    // Периодическая проверка (каждые 300мс в течение 15 секунд)
+    let checkCount = 0;
+    const maxChecks = 50; // 50 проверок * 300мс = 15 секунд
+    const intervalId = setInterval(function() {
+        checkCount++;
+        applySelectStyles(false);
+        if (checkCount >= maxChecks) {
+            clearInterval(intervalId);
+        }
+    }, 300);
+})();
+
+// Mobile sidebar toggle functionality
+(function() {
+    'use strict';
+    
+    function initMobileSidebar() {
+        // Проверяем, если это мобильное устройство
+        if (window.innerWidth > 767) {
+            return; // Не применяем на десктопе
+        }
+        
+        // Создаем кнопку для открытия сайдбара
+        const sidebarToggle = document.createElement('button');
+        sidebarToggle.className = 'sidebar-toggle';
+        sidebarToggle.innerHTML = '☰';
+        sidebarToggle.setAttribute('aria-label', 'Toggle sidebar');
+        document.body.appendChild(sidebarToggle);
+        
+        // Создаем overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+        
+        const sidebar = document.querySelector('.main-sidebar');
+        if (!sidebar) return;
+        
+        // Функция открытия сайдбара
+        function openSidebar() {
+            sidebar.classList.add('sidebar-open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Функция закрытия сайдбара
+        function closeSidebar() {
+            sidebar.classList.remove('sidebar-open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Обработчики событий
+        sidebarToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (sidebar.classList.contains('sidebar-open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+        
+        overlay.addEventListener('click', function() {
+            closeSidebar();
+        });
+        
+        // Закрываем при клике на ссылку в сайдбаре
+        const sidebarLinks = sidebar.querySelectorAll('a');
+        sidebarLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                setTimeout(closeSidebar, 300);
+            });
+        });
+        
+        // Закрываем при изменении размера окна (если стало больше 767px)
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (window.innerWidth > 767) {
+                    closeSidebar();
+                    sidebarToggle.style.display = 'none';
+                    overlay.style.display = 'none';
+                } else {
+                    sidebarToggle.style.display = 'block';
+                }
+            }, 250);
+        });
+    }
+    
+    // Инициализируем при загрузке
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileSidebar);
+    } else {
+        initMobileSidebar();
+    }
+    
+    // Также инициализируем после полной загрузки
+    window.addEventListener('load', function() {
+        setTimeout(initMobileSidebar, 100);
+    });
+})();
+</script>
+{% endblock %}
+

@@ -1,0 +1,1561 @@
+/* Custom Admin CSS for City Exchange */
+/* Используем цвета по умолчанию Unfold */
+
+/* Логотип в Unfold - верхний левый угол */
+header img[src*="logo"],
+header [class*="brand"] img,
+header [class*="logo"] img,
+[data-unfold] img[src*="logo"],
+.brand-logo img,
+.site-logo img,
+.unfold-brand img {
+    max-height: 40px !important;
+    height: auto !important;
+    width: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+/* Убеждаемся, что логотип виден в header */
+header [class*="brand"],
+header [class*="logo"],
+header a[href="/admin/"] img,
+[data-unfold] [class*="brand"],
+.brand-logo,
+.site-logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+/* Специфичные стили для Unfold header */
+header a[href="/admin/"],
+header [href="/admin/"] {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+header a[href="/admin/"] img {
+    display: block !important;
+    max-height: 40px !important;
+    width: auto !important;
+}
+
+/* Навбар и сайдбар используют стандартные цвета Unfold */
+
+.nav-sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+}
+
+/* Цвета hover и active используют стандартные цвета Unfold */
+
+/* Дополнительные стили для навигационных элементов в сайдбаре */
+aside .nav-sidebar .nav-item > .nav-link {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+}
+
+aside .nav-sidebar .nav-item .nav-link {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+}
+
+/* Скрываем блок с информацией о пользователе в сайдбаре */
+aside .user-panel,
+aside .user-panel .info,
+aside .nav-sidebar .nav-item:has(.user-panel),
+aside .nav-sidebar .nav-item:first-child:has([class*="user"]),
+aside .nav-sidebar > .nav-item:first-child {
+    display: none !important;
+}
+
+/* Альтернативный способ - скрыть первый элемент навигации если это пользователь */
+aside .nav-sidebar > .nav-item:first-of-type:has(.user-panel),
+aside .nav-sidebar > .nav-item:first-of-type:has([class*="user"]) {
+    display: none !important;
+}
+
+/* Скрываем кнопку "Управление ботом" в сайдбаре - только с иконкой робота */
+/* НЕ скрываем "Пользователи телеграма" - у неё иконка fa-user */
+aside .nav-sidebar .nav-link:has(i.fa-robot),
+aside .nav-sidebar .nav-item:has(i.fa-robot),
+aside .nav-sidebar .nav-link:has(.fa-robot),
+aside .nav-sidebar .nav-item:has(.fa-robot) {
+    display: none !important;
+}
+
+/* Скрываем иконку робота */
+aside .nav-sidebar .nav-link i.fa-robot,
+aside .nav-sidebar .nav-item .nav-link i.fa-robot {
+    display: none !important;
+}
+
+/* Скрываем родительский элемент навигации с иконкой робота */
+aside .nav-sidebar .nav-item:has(i.fa-robot),
+aside .nav-sidebar .nav-item:has(.fa-robot) {
+    display: none !important;
+}
+
+/* Скрываем кнопку "Группы" в разделе "Пользователи и группы" */
+aside .nav-sidebar .nav-link[href*="auth/group"],
+aside .nav-sidebar .nav-item:has(a[href*="auth/group"]),
+aside .nav-sidebar .nav-item:has(a[href*="group/"]),
+aside .nav-sidebar a[href*="auth/group"],
+aside .nav-sidebar a[href*="group/"] {
+    display: none !important;
+}
+
+/* Альтернативный способ - скрыть по тексту "Группы" */
+aside .nav-sidebar .nav-link:has-text("Группы"),
+aside .nav-sidebar .nav-item:has-text("Группы") {
+    display: none !important;
+}
+
+/* Основной контент */
+.content-wrapper {
+    background-color: var(--bg-color) !important;
+}
+
+.content-header {
+    background-color: var(--bg-color) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.content-header h1 {
+    color: white !important;
+}
+
+/* Карточки и формы */
+.card {
+    background-color: #1f2328 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+/* Карточки используют стандартные цвета Unfold */
+
+/* Инпуты и селекторы используют стандартные стили Unfold */
+
+/* Кнопки используют стандартные цвета Unfold */
+
+.btn-primary:hover {
+    background-color: #1e8a6a !important;
+    border-color: #1e8a6a !important;
+}
+
+.btn-secondary {
+    background-color: #2d3136 !important;
+    border-color: #2d3136 !important;
+    color: white !important;
+}
+
+/* Таблицы */
+.table {
+    color: white !important;
+}
+
+/* Таблицы используют стандартные цвета Unfold */
+
+.table tbody tr {
+    background-color: #1f2328 !important;
+}
+
+/* Hover эффекты используют стандартные цвета Unfold */
+
+.table tbody td {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ссылки используют стандартные цвета Unfold */
+
+a:hover {
+    color: #1e8a6a !important;
+}
+
+/* Текст */
+body {
+    background-color: var(--bg-color) !important;
+    color: white !important;
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Пагинация */
+.pagination .page-link {
+    background-color: #1f2328 !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+/* Пагинация использует стандартные цвета Unfold */
+
+/* Фильтры */
+.filter-horizontal {
+    background-color: #1f2328 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Алерты */
+.alert {
+    background-color: #1f2328 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+/* Алерты используют стандартные цвета Unfold */
+
+/* Модальные окна */
+.modal-content {
+    background-color: #1f2328 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Модальные окна используют стандартные цвета Unfold */
+
+.modal-body {
+    background-color: #1f2328 !important;
+    color: white !important;
+}
+
+.modal-footer {
+    background-color: #1f2328 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Чекбоксы и радио */
+/* Чекбоксы и радио используют стандартные цвета Unfold */
+
+/* Селекты - дополнительные стили (дубликаты удалены, используются стили выше) */
+
+/* Логотип - удалено, используется стиль выше */
+
+/* Логотип на странице входа - скрыт */
+.login-logo,
+.login-box .login-logo,
+.login-box-msg .login-logo {
+    display: none !important;
+}
+
+.login-logo img,
+.login-logo .brand-image,
+.login-box .login-logo img,
+.login-box-msg .login-logo img {
+    display: none !important;
+}
+
+/* Убираем псевдоэлементы с логотипом */
+.login-box-msg::before {
+    display: none !important;
+}
+
+/* Заголовок City Exchange - только текст, без логотипа */
+.login-box-msg h1,
+.login-box h1 {
+    text-align: center !important;
+    color: white !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    position: relative !important;
+}
+
+.login-box-msg h1::before,
+.login-box h1::before {
+    display: none !important;
+}
+
+/* Скрываем иконку рядом с текстом */
+.login-box-msg h1 i,
+.login-box h1 i,
+.login-box-msg h1 .fa,
+.login-box h1 .fa,
+.login-box-msg h1 .fas,
+.login-box h1 .fas,
+.login-box-msg h1 .brand-image,
+.login-box h1 .brand-image {
+    display: none !important;
+}
+
+/* Логотип и текст над контейнером формы входа */
+.login-page {
+    position: relative !important;
+    padding-top: 200px !important;
+}
+
+.login-page::before {
+    content: '' !important;
+    display: block !important;
+    background-image: url('logo.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    height: 80px !important;
+    width: 180px !important;
+    margin: 0 auto 20px auto !important;
+    position: absolute !important;
+    top: 50px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000 !important;
+}
+
+.login-page::after {
+    content: 'City Exchange' !important;
+    display: block !important;
+    color: white !important;
+    font-size: 32px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    position: absolute !important;
+    top: 140px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+}
+
+/* Контейнер формы - ниже логотипа и текста */
+.login-page .login-box,
+.login-page .login-box-msg {
+    margin-top: 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+
+/* Бренд в сайдбаре - только текст, без логотипа */
+.brand-link {
+    background-color: var(--sidebar-bg) !important;
+    background-image: none !important;
+    padding: 14px 15px !important;
+    min-height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    position: relative !important;
+}
+
+.brand-link .brand-image,
+.brand-link img {
+    display: none !important;
+}
+
+.brand-text {
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    text-align: left !important;
+}
+
+/* Активные элементы */
+/* Активные элементы используют стандартные цвета Unfold */
+
+/* Ховер на ссылках использует стандартные цвета Unfold */
+
+/* Инпуты используют стандартные стили Unfold */
+
+/* Селекторы используют стандартные стили Unfold */
+
+/* Футер */
+.main-footer {
+    background-color: var(--bg-color) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Дополнительные стили для темной темы */
+.breadcrumb {
+    background-color: #1f2328 !important;
+}
+
+.breadcrumb-item a {
+    color: inherit !important;
+}
+
+.breadcrumb-item.active {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Бейджи используют стандартные цвета Unfold */
+
+.badge-secondary {
+    background-color: #2d3136 !important;
+}
+
+/* Дропдауны */
+.dropdown-menu {
+    background-color: #1f2328 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dropdown-item {
+    color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(128, 128, 128, 0.2) !important;
+    color: inherit !important;
+}
+
+/* Табы */
+.nav-tabs {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-tabs .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+.nav-tabs .nav-link.active {
+    /* Background использует стандартные цвета Unfold */
+    /* Border использует стандартные цвета Unfold */
+    color: white !important;
+}
+
+/* Инлайн формы */
+.inline-group {
+    background-color: #1f2328 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.inline-group .form-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Поиск */
+#searchbar {
+    background-color: #1f2328 !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+/* Searchbar использует стандартные цвета Unfold */
+
+/* Чекбоксы в таблицах */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Селекты в таблицах - стили уже определены выше */
+
+/* Лейблы */
+label {
+    color: white !important;
+}
+
+.required {
+    color: inherit !important;
+}
+
+/* Сообщения */
+.messages {
+    background-color: #1f2328 !important;
+}
+
+.messages .success {
+    background-color: rgba(128, 128, 128, 0.2) !important;
+    border-left: 4px solid inherit !important;
+    color: white !important;
+}
+
+.messages .error {
+    background-color: rgba(220, 53, 69, 0.2) !important;
+    border-left: 4px solid #dc3545 !important;
+    color: white !important;
+}
+
+.messages .warning {
+    background-color: rgba(255, 193, 7, 0.2) !important;
+    border-left: 4px solid #ffc107 !important;
+    color: white !important;
+}
+
+.messages .info {
+    background-color: rgba(13, 202, 240, 0.2) !important;
+    border-left: 4px solid #0dcaf0 !important;
+    color: white !important;
+}
+
+/* Дашборд - секции приложений (Bot, Пользователи и группы) */
+.app-bot .card-header,
+.app-auth .card-header {
+    color: white !important;
+}
+
+.app-bot .card-header h3,
+.app-auth .card-header h3,
+.app-bot .card-header a,
+.app-auth .card-header a {
+    color: white !important;
+}
+
+/* Кнопки в дашборде */
+.app-bot .btn,
+.app-auth .btn {
+    color: white !important;
+}
+
+.app-bot .btn-primary,
+.app-auth .btn-primary {
+    color: white !important;
+}
+
+.app-bot .btn-secondary,
+.app-auth .btn-secondary {
+    color: white !important;
+}
+
+/* Текст в карточках дашборда */
+.app-bot .card-body,
+.app-auth .card-body {
+    color: white !important;
+}
+
+.app-bot .card-body a,
+.app-auth .card-body a {
+    color: white !important;
+}
+
+.app-bot .card-body a:hover,
+.app-auth .card-body a:hover {
+    color: inherit !important;
+}
+
+/* Модели в дашборде */
+.app-bot .model,
+.app-auth .model {
+    color: white !important;
+}
+
+.app-bot .model a,
+.app-auth .model a {
+    color: white !important;
+}
+
+.app-bot .model a:hover,
+.app-auth .model a:hover {
+    color: inherit !important;
+}
+
+/* Общие стили для дашборда */
+.dashboard .module table th,
+.dashboard .module table td {
+    color: white !important;
+}
+
+.dashboard .module h2,
+.dashboard .module h3 {
+    color: white !important;
+}
+
+.dashboard .module a {
+    color: white !important;
+}
+
+.dashboard .module a:hover {
+    color: inherit !important;
+}
+
+/* Дополнительные стили для всех карточек в дашборде */
+.content-wrapper .card,
+.content-wrapper .card-header,
+.content-wrapper .card-body {
+    color: white !important;
+}
+
+.content-wrapper .card-header h3,
+.content-wrapper .card-header h4,
+.content-wrapper .card-header h5 {
+    color: white !important;
+}
+
+.content-wrapper .card-header a {
+    color: white !important;
+}
+
+.content-wrapper .card-body a,
+.content-wrapper .card-body .model a {
+    color: white !important;
+}
+
+.content-wrapper .card-body a:hover,
+.content-wrapper .card-body .model a:hover {
+    color: inherit !important;
+}
+
+/* Все кнопки в дашборде */
+.content-wrapper .btn {
+    color: white !important;
+}
+
+.content-wrapper .btn-primary {
+    color: white !important;
+}
+
+.content-wrapper .btn-secondary {
+    color: white !important;
+}
+
+.content-wrapper .btn-info {
+    color: white !important;
+}
+
+/* Специфичные стили для Jazmin дашборда - заголовки секций */
+.app-bot .card-header,
+.app-auth .card-header {
+    color: white !important;
+}
+
+.app-bot .card-header h3,
+.app-auth .card-header h3,
+.app-bot .card-header h4,
+.app-auth .card-header h4,
+.app-bot .card-header h5,
+.app-auth .card-header h5 {
+    color: white !important;
+}
+
+.app-bot .card-header a,
+.app-auth .card-header a {
+    color: white !important;
+}
+
+.app-bot .card-body,
+.app-auth .card-body {
+    color: white !important;
+}
+
+.app-bot .card-body .model,
+.app-auth .card-body .model {
+    color: white !important;
+}
+
+.app-bot .card-body .model a,
+.app-auth .card-body .model a {
+    color: white !important;
+}
+
+.app-bot .card-body .model a:hover,
+.app-auth .card-body .model a:hover {
+    color: inherit !important;
+}
+
+/* Перемещение "Последние действия" вниз страницы */
+#jazzy-actions,
+.recent-actions,
+.module.recent-actions {
+    position: relative !important;
+    float: none !important;
+    width: 100% !important;
+    margin-top: 30px !important;
+    clear: both !important;
+}
+
+/* На главной странице дашборда - карточки по горизонтали, последние действия внизу */
+.dashboard .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+/* Основной контент с карточками - горизонтально */
+.dashboard .col-md-9 {
+    order: 1 !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+}
+
+/* Карточки Bot и Пользователи и группы - в ряд */
+.dashboard .col-md-9 > .app-bot,
+.dashboard .col-md-9 > .app-auth,
+.dashboard .col-md-9 > .card,
+.dashboard .col-md-9 > .module,
+.dashboard .col-md-9 .app-bot,
+.dashboard .col-md-9 .app-auth,
+.dashboard .col-md-9 .card,
+.dashboard .col-md-9 .module {
+    flex: 1 1 calc(50% - 10px) !important;
+    min-width: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Контейнер для карточек в дашборде */
+.dashboard .col-md-9 .row,
+.dashboard .col-md-9 > div {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+}
+
+/* Последние действия - внизу, на всю ширину */
+.dashboard .col-md-3,
+.dashboard #jazzy-actions,
+.dashboard .recent-actions,
+.dashboard .module.recent-actions {
+    order: 2 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 30px !important;
+    clear: both !important;
+}
+
+/* Степы (steps) - горизонтально */
+.steps,
+.step,
+.wizard,
+.wizard-steps,
+.form-wizard,
+.form-wizard .steps {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
+.steps li,
+.step-item,
+.wizard-step,
+.form-wizard .step {
+    flex: 1 1 auto !important;
+    display: inline-block !important;
+    margin-right: 10px !important;
+}
+
+/* Дополнительные стили для горизонтальных степов */
+ul.steps,
+ol.steps {
+    display: flex !important;
+    flex-direction: row !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 0 20px 0 !important;
+}
+
+ul.steps li,
+ol.steps li {
+    flex: 1 1 auto !important;
+    margin-right: 10px !important;
+    text-align: center !important;
+}
+
+/* ============================================
+   RESPONSIVE STYLES FOR MOBILE DEVICES
+   ============================================ */
+
+/* Mobile devices (phones, less than 768px) */
+@media (max-width: 767.98px) {
+    /* Основной контейнер */
+    body {
+        font-size: 14px !important;
+    }
+
+    /* Сайдбар - скрыт по умолчанию, показывается через кнопку */
+    .main-sidebar {
+        position: fixed !important;
+        left: -250px !important;
+        top: 0 !important;
+        height: 100vh !important;
+        z-index: 1050 !important;
+        transition: left 0.3s ease !important;
+        width: 250px !important;
+        overflow-y: auto !important;
+    }
+
+    .main-sidebar.sidebar-open {
+        left: 0 !important;
+    }
+
+    /* Кнопка для открытия/закрытия сайдбара */
+    .sidebar-toggle {
+        display: block !important;
+        position: fixed !important;
+        top: 8px !important;
+        left: 8px !important;
+        z-index: 1051 !important;
+        /* Background использует стандартные цвета Unfold */
+        color: white !important;
+        border: none !important;
+        padding: 10px 12px !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        font-size: 18px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Overlay для сайдбара на мобильных */
+    .sidebar-overlay {
+        display: none !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        z-index: 1049 !important;
+    }
+
+    .sidebar-overlay.active {
+        display: block !important;
+    }
+
+    /* Контент - на всю ширину */
+    .content-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 8px 4px !important;
+    }
+
+    /* Навбар */
+    .main-header {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .navbar {
+        padding: 8px 4px !important;
+        min-height: auto !important;
+    }
+
+    .navbar-brand {
+        font-size: 16px !important;
+        padding: 4px 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Заголовки */
+    .content-header {
+        padding: 10px 4px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .content-header h1 {
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+        padding: 0 !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Changelist форма */
+    #changelist {
+        flex-direction: column !important;
+    }
+
+    #changelist .changelist-form-container {
+        width: 100% !important;
+        order: 2 !important;
+    }
+
+    #changelist-filter {
+        order: 1 !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Таблицы - горизонтальная прокрутка */
+    .table-responsive {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        margin-bottom: 10px !important;
+    }
+
+    .table {
+        min-width: 600px !important;
+        font-size: 12px !important;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px 4px !important;
+        white-space: nowrap !important;
+        font-size: 13px !important;
+    }
+
+    /* Карточки */
+    .card {
+        margin-bottom: 10px !important;
+    }
+
+    .card-header {
+        padding: 10px 8px !important;
+        font-size: 14px !important;
+    }
+
+    .card-body {
+        padding: 10px 8px !important;
+    }
+
+    /* Формы */
+    .form-group {
+        margin-bottom: 10px !important;
+    }
+
+    .form-control {
+        font-size: 16px !important; /* Предотвращает зум на iOS */
+        padding: 10px 8px !important;
+        width: 100% !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* Кнопки */
+    .btn {
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+        min-height: 44px !important; /* Минимальный размер для касания */
+        width: 100% !important;
+        margin-bottom: 8px !important;
+        line-height: 1.4 !important;
+    }
+
+    .btn-group .btn {
+        width: auto !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Фильтры */
+    .changelist-filter {
+        position: relative !important;
+        width: 100% !important;
+        margin-bottom: 12px !important;
+        padding: 12px 8px !important;
+        background-color: #1f2328 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+    }
+
+    .changelist-filter h3 {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        margin-bottom: 8px !important;
+        padding: 0 !important;
+        color: white !important;
+    }
+
+    .changelist-filter ul {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .changelist-filter li {
+        margin-bottom: 6px !important;
+        padding: 0 !important;
+    }
+
+    .changelist-filter a {
+        padding: 8px 10px !important;
+        border-radius: 4px !important;
+        display: block !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .changelist-filter li.selected a {
+        background-color: rgba(128, 128, 128, 0.2) !important;
+        color: inherit !important;
+    }
+
+    .changelist-filter details {
+        margin-bottom: 10px !important;
+    }
+
+    .changelist-filter details summary {
+        padding: 8px 10px !important;
+        font-size: 13px !important;
+        cursor: pointer !important;
+        border-radius: 4px !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .changelist-filter details summary:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    /* Поиск и toolbar */
+    #toolbar {
+        padding: 12px 8px !important;
+        margin-bottom: 12px !important;
+        background-color: #1f2328 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+    }
+
+    #toolbar form {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    #toolbar .form-row {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+        align-items: center !important;
+        margin-bottom: 0 !important;
+    }
+
+    #toolbar .form-row input[type="text"],
+    #toolbar .form-row select {
+        flex: 1 !important;
+        margin-bottom: 0 !important;
+    }
+
+    #toolbar input[type="submit"] {
+        padding: 10px 16px !important;
+        min-height: 44px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Поиск */
+    #searchbar {
+        width: 100% !important;
+        margin-bottom: 8px !important;
+        font-size: 16px !important;
+        padding: 10px 12px !important;
+        border-radius: 6px !important;
+    }
+
+    /* Пагинация */
+    .pagination {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        margin: 10px 0 !important;
+        padding: 0 !important;
+    }
+
+    .pagination .page-link {
+        padding: 8px 10px !important;
+        font-size: 13px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+    }
+
+    /* Модальные окна */
+    .modal-dialog {
+        margin: 3px !important;
+        max-width: calc(100% - 6px) !important;
+    }
+
+    .modal-content {
+        border-radius: 6px !important;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 15px 12px !important;
+    }
+
+    /* Дашборд - карточки вертикально */
+    .dashboard .col-md-9 {
+        flex-direction: column !important;
+    }
+
+    .dashboard .col-md-9 > .app-bot,
+    .dashboard .col-md-9 > .app-auth,
+    .dashboard .col-md-9 > .card,
+    .dashboard .col-md-9 > .module {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+
+    /* Хлебные крошки */
+    .breadcrumb {
+        font-size: 12px !important;
+        padding: 6px 4px !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Инлайн формы */
+    .inline-group {
+        overflow-x: auto !important;
+        padding: 10px 8px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Табы */
+    .nav-tabs {
+        flex-wrap: wrap !important;
+        margin-bottom: 6px !important;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 10px 12px !important;
+        font-size: 13px !important;
+        min-height: 44px !important;
+    }
+
+    /* Дропдауны */
+    .dropdown-menu {
+        width: 100% !important;
+        max-width: calc(100vw - 20px) !important;
+    }
+
+    /* Футер */
+    .main-footer {
+        margin-left: 0 !important;
+        padding: 10px 8px !important;
+        font-size: 12px !important;
+    }
+
+    /* Контент */
+    .content {
+        padding: 8px 4px !important;
+    }
+
+    /* Модули */
+    .module {
+        margin-bottom: 10px !important;
+        padding: 10px 8px !important;
+    }
+
+    /* Формы - уменьшаем отступы */
+    .form-row {
+        margin-bottom: 10px !important;
+    }
+
+    .field-box {
+        padding: 10px 8px !important;
+    }
+
+    /* Действия */
+    .actions {
+        padding: 10px 8px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .actions label {
+        margin-bottom: 3px !important;
+        padding: 0 !important;
+    }
+
+    /* Object tools */
+    .object-tools {
+        margin-bottom: 6px !important;
+        padding: 0 !important;
+    }
+
+    .object-tools li {
+        margin-bottom: 3px !important;
+    }
+
+    /* Фильтры в changelist */
+    #changelist-filter {
+        padding: 10px 8px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Результаты поиска */
+    .results {
+        margin-top: 6px !important;
+    }
+
+    /* Список результатов */
+    #result_list {
+        margin: 0 !important;
+    }
+
+    #result_list th {
+        padding: 10px 6px !important;
+        font-size: 13px !important;
+    }
+
+    #result_list td {
+        padding: 10px 6px !important;
+        font-size: 13px !important;
+    }
+
+    /* Чекбоксы в таблицах */
+    #result_list input[type="checkbox"] {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Скрываем некоторые элементы на мобильных */
+    .d-none-mobile {
+        display: none !important;
+    }
+
+    /* Увеличиваем размер чекбоксов для удобства */
+    input[type="checkbox"] {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    /* Улучшаем отступы */
+    .content {
+        padding: 10px !important;
+    }
+
+    /* Степы - вертикально на мобильных */
+    .steps,
+    ul.steps,
+    ol.steps {
+        flex-direction: column !important;
+    }
+
+    ul.steps li,
+    ol.steps li {
+        margin-right: 0 !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/* Планшеты (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .content-wrapper {
+        padding: 15px !important;
+    }
+
+    .table {
+        font-size: 13px !important;
+    }
+
+    .btn {
+        padding: 8px 4px !important;
+        min-height: 40px !important;
+    }
+
+    .card-body {
+        padding: 20px 4px !important;
+    }
+}
+
+/* Улучшения для очень маленьких экранов (менее 576px) */
+@media (max-width: 575.98px) {
+    body {
+        font-size: 13px !important;
+    }
+
+    .content-header h1 {
+        font-size: 18px !important;
+    }
+
+    .table {
+        font-size: 11px !important;
+        min-width: 500px !important;
+    }
+
+    .btn {
+        font-size: 13px !important;
+        padding: 12px 4px !important;
+    }
+
+    .form-control {
+        font-size: 16px !important;
+        padding: 12px 4px !important;
+    }
+
+    .modal-dialog {
+        margin: 5px !important;
+        max-width: calc(100% - 10px) !important;
+    }
+}
+
+/* Ландшафтная ориентация на мобильных */
+@media (max-width: 767.98px) and (orientation: landscape) {
+    .main-sidebar {
+        width: 200px !important;
+    }
+
+    .content-wrapper {
+        padding: 10px 1px !important;
+    }
+
+    .table {
+        font-size: 11px !important;
+    }
+}
+
+/* Улучшения для touch устройств */
+@media (hover: none) and (pointer: coarse) {
+    /* Увеличиваем область клика для ссылок */
+    a {
+        min-height: 44px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        padding: 8px 4px !important;
+    }
+
+    /* Улучшаем кнопки */
+    .btn {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+
+    /* Улучшаем элементы навигации */
+    .nav-link {
+        min-height: 44px !important;
+        padding: 12px 15px !important;
+    }
+}
+
+/* Дополнительные улучшения для мобильных */
+@media (max-width: 767.98px) {
+    /* Улучшаем отображение действий в таблицах */
+    .field-actions,
+    .field-get_absolute_url {
+        white-space: normal !important;
+    }
+
+    /* Улучшаем отображение полей в формах */
+    .form-row {
+        flex-direction: column !important;
+    }
+
+    .form-row > div {
+        width: 100% !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* Улучшаем отображение help text */
+    .help-block,
+    .help-text {
+        font-size: 12px !important;
+        margin-top: 4px !important;
+        padding: 0 4px !important;
+    }
+
+    /* Улучшаем отображение ошибок */
+    .errorlist {
+        font-size: 12px !important;
+        padding: 8px 10px !important;
+        margin: 5px 0 !important;
+    }
+
+    /* Улучшаем отображение inline форм */
+    .inline-related {
+        margin-bottom: 10px !important;
+        padding: 10px 8px !important;
+    }
+
+    /* Улучшаем отображение фильтров */
+    #changelist-filter {
+        position: relative !important;
+        width: 100% !important;
+        margin-bottom: 12px !important;
+        padding: 12px 8px !important;
+        background-color: #1f2328 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+    }
+
+    #changelist-filter h2 {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        padding: 8px 0 !important;
+        margin-bottom: 10px !important;
+        color: white !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    #changelist-filter h3,
+    #changelist-filter details summary {
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        padding: 8px 10px !important;
+        margin-bottom: 6px !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    #changelist-filter details {
+        margin-bottom: 8px !important;
+    }
+
+    #changelist-filter details summary {
+        cursor: pointer !important;
+        border-radius: 4px !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    #changelist-filter details summary:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    #changelist-filter ul {
+        margin: 0 !important;
+        padding: 4px 10px 10px !important;
+    }
+
+    #changelist-filter li {
+        margin-bottom: 4px !important;
+    }
+
+    #changelist-filter a {
+        padding: 8px 10px !important;
+        border-radius: 4px !important;
+        display: block !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        transition: all 0.2s ease !important;
+    }
+
+    #changelist-filter a:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: white !important;
+    }
+
+    #changelist-filter li.selected a {
+        background-color: rgba(128, 128, 128, 0.2) !important;
+        color: inherit !important;
+        font-weight: 500 !important;
+    }
+
+    /* Улучшаем отображение действий */
+    .actions {
+        margin-bottom: 12px !important;
+        padding: 12px 8px !important;
+        background-color: #1f2328 !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+    }
+
+    .actions label {
+        display: block !important;
+        margin-bottom: 8px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        color: white !important;
+    }
+
+    .actions select,
+    .actions input {
+        width: 100% !important;
+        margin-bottom: 8px !important;
+        padding: 10px 12px !important;
+        border-radius: 6px !important;
+    }
+
+    .actions button,
+    .actions input[type="submit"] {
+        width: 100% !important;
+        padding: 10px 16px !important;
+        min-height: 44px !important;
+        font-size: 14px !important;
+        border-radius: 6px !important;
+    }
+
+    /* Улучшаем отображение object-tools */
+    .object-tools {
+        margin-bottom: 6px !important;
+        padding: 0 !important;
+    }
+
+    .object-tools li {
+        margin-bottom: 3px !important;
+    }
+
+    .object-tools a {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 10px 12px !important;
+    }
+
+    /* Уменьшаем отступы в формах редактирования */
+    .form-horizontal .form-group {
+        margin-bottom: 10px !important;
+    }
+
+    /* Уменьшаем отступы в полях */
+    .field-wrapper {
+        padding: 8px 0 !important;
+    }
+
+    /* Уменьшаем отступы в списках моделей */
+    .model {
+        margin-bottom: 8px !important;
+        padding: 8px 0 !important;
+    }
+
+    /* Уменьшаем отступы в заголовках секций */
+    h2,
+    h3 {
+        margin-top: 10px !important;
+        margin-bottom: 8px !important;
+        padding: 0 !important;
+    }
+
+    /* Уменьшаем отступы в параграфах */
+    p {
+        margin-bottom: 8px !important;
+    }
+    .module {
+        margin-bottom: 10px !important;
+        padding: 0px !important;
+    }
+    .content-wrapper{
+        padding: 0px !important;
+    }
+    .col-12{
+        padding: 4px !important;
+    }
+
+    /* Улучшаем changelist форму */
+    #changelist-form {
+        padding: 0 !important;
+    }
+
+    #changelist-form .results {
+        margin-top: 12px !important;
+    }
+
+    /* Улучшаем отображение toolbar на мобильных */
+    #toolbar .form-row {
+        flex-wrap: wrap !important;
+    }
+
+    #toolbar .form-row > div {
+        flex: 1 1 auto !important;
+        min-width: 120px !important;
+    }
+
+    #toolbar input[type="submit"] {
+        flex: 0 0 auto !important;
+        min-width: 80px !important;
+    }
+
+    /* Улучшаем отображение поиска */
+    #changelist-search {
+        margin-bottom: 12px !important;
+    }
+
+    #changelist-search form {
+        display: flex !important;
+        gap: 8px !important;
+        align-items: stretch !important;
+    }
+
+    #changelist-search input[type="text"] {
+        flex: 1 !important;
+        margin-bottom: 0 !important;
+    }
+
+    #changelist-search input[type="submit"] {
+        flex: 0 0 auto !important;
+        min-width: 80px !important;
+    }
+}
+

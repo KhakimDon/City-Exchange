@@ -1,0 +1,49 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+    paths:
+      - 'Frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - 'Frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+    
+    - name: Install dependencies
+      working-directory: ./Frontend
+      run: bun install
+    
+    - name: Lint
+      working-directory: ./Frontend
+      run: bun run lint
+    
+    - name: Type check
+      working-directory: ./Frontend
+      run: bunx vue-tsc --noEmit
+    
+    - name: Build
+      working-directory: ./Frontend
+      run: bun run build
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend-build
+        path: Frontend/dist/
+        retention-days: 7
+
