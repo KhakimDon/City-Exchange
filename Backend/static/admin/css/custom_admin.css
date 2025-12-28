@@ -67,7 +67,10 @@
 .btn-primary,
 .button-primary,
 input[type="submit"].default,
-.submit-row input[type="submit"] {
+.submit-row input[type="submit"],
+input[type="submit"],
+button[type="submit"],
+button.btn-primary {
     background-color: #26A17B !important;
     border-color: #26A17B !important;
     color: white !important;
@@ -95,7 +98,11 @@ button[type="submit"]:focus,
 input[type="submit"]:active,
 button[type="submit"]:active,
 .btn-primary:visited,
-.button-primary:visited {
+.button-primary:visited,
+.btn-primary:hover,
+.button-primary:hover,
+input[type="submit"]:hover,
+button[type="submit"]:hover {
     background-color: #26A17B !important;
     background: #26A17B !important;
     background-image: none !important;
