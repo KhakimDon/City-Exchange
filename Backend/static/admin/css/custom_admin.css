@@ -66,76 +66,7 @@ input[type="radio"]:checked {
     accent-color: #26A17B !important;
 }
 
-/* Скрываем кнопку "Return to site" на странице входа */
-.login-page a[href="/"],
-.login-page a[href="/"]:not(.logo),
-.login-page .site-link,
-.login-page .return-link,
-.login-page .back-link,
-.login-page header a[href="/"],
-body.login-page a[href="/"]:not([class*="logo"]),
-body.login-page .unfold-header a[href="/"]:not([class*="logo"]) {
-    display: none !important;
-    visibility: hidden !important;
-}
-
-/* Заменяем фиолетовые цвета на #26A17B на странице входа (только для текста и кнопок, НЕ для полей ввода) */
-.login-page *[style*="purple"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="violet"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="#667eea"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="#764ba2"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="#6f42c1"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="#7c3aed"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="#8b5cf6"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="rgb(102, 126, 234)"]:not(input):not(.form-control):not(textarea):not(select),
-.login-page *[style*="rgb(118, 75, 162)"]:not(input):not(.form-control):not(textarea):not(select) {
-    color: #26A17B !important;
-}
-
-/* Фон заменяем только для кнопок */
-.login-page *[style*="purple"]:is(button, .btn, input[type="submit"]),
-.login-page *[style*="#667eea"]:is(button, .btn, input[type="submit"]),
-.login-page *[style*="rgb(102, 126, 234)"]:is(button, .btn, input[type="submit"]) {
-    background-color: #26A17B !important;
-    border-color: #26A17B !important;
-}
-
-/* Поля ввода должны оставаться серыми */
-.login-page input[type="text"],
-.login-page input[type="password"],
-.login-page input[type="email"],
-.login-page .form-control {
-    background-color: #2d3136 !important;
-    background: #2d3136 !important;
-}
-
-/* Кнопка входа - зеленый цвет */
-.login-page .btn-primary,
-.login-page input[type="submit"],
-.login-page button[type="submit"] {
-    background-color: #26A17B !important;
-    background: #26A17B !important;
-    background-image: none !important;
-    border-color: #26A17B !important;
-}
-
-.login-page .btn-primary:hover,
-.login-page input[type="submit"]:hover {
-    background-color: #1d7a5d !important;
-    background: #1d7a5d !important;
-    border-color: #1d7a5d !important;
-}
-
-/* Текст "City Exchange Admin" и другие заголовки */
-.login-page .login-box-msg h2,
-.login-page .login-box-msg h3,
-.login-page .login-box-msg strong,
-.login-page .login-box-msg b,
-.login-page .login-box-msg p strong,
-.login-page .login-box-msg [class*="text-primary"],
-.login-page .login-box-msg [class*="primary"]:not(.btn-primary):not(.form-control) {
-    color: #26A17B !important;
-}
+/* Стили для страницы входа удалены - используются дефолтные стили Unfold с primary color #26A17B */
 
 /* Логотип в Unfold - верхний левый угол */
 header img[src*="logo"],
@@ -370,75 +301,7 @@ body {
 
 /* Логотип - удалено, используется стиль выше */
 
-/* Логотип на странице входа - скрыт */
-.login-logo,
-.login-box .login-logo,
-.login-box-msg .login-logo {
-    display: none !important;
-}
-
-.login-logo img,
-.login-logo .brand-image,
-.login-box .login-logo img,
-.login-box-msg .login-logo img {
-    display: none !important;
-}
-
-/* Убираем псевдоэлементы с логотипом */
-.login-box-msg::before {
-    display: none !important;
-}
-
-/* Заголовок City Exchange - только текст, без логотипа */
-.login-box-msg h1,
-.login-box h1 {
-    text-align: center !important;
-    color: white !important;
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-    position: relative !important;
-}
-
-.login-box-msg h1::before,
-.login-box h1::before {
-    display: none !important;
-}
-
-/* Скрываем иконку рядом с текстом */
-.login-box-msg h1 i,
-.login-box h1 i,
-.login-box-msg h1 .fa,
-.login-box h1 .fa,
-.login-box-msg h1 .fas,
-.login-box h1 .fas,
-.login-box-msg h1 .brand-image,
-.login-box h1 .brand-image {
-    display: none !important;
-}
-
-/* Логотип и текст над контейнером формы входа - СКРЫТЫ */
-.login-page {
-    position: relative !important;
-    padding-top: 0 !important;
-}
-
-.login-page::before {
-    display: none !important;
-    content: none !important;
-}
-
-.login-page::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* Контейнер формы - ниже логотипа и текста */
-.login-page .login-box,
-.login-page .login-box-msg {
-    margin-top: 0 !important;
-    position: relative !important;
-    z-index: 1 !important;
-}
+/* Стили для страницы входа удалены - используются дефолтные стили Unfold */
 
 
 /* Бренд в сайдбаре - только текст, без логотипа */
