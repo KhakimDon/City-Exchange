@@ -217,11 +217,12 @@
     .login-page header a[href="/"],
     .login-page [class*="return"],
     .login-page [class*="site-link"],
-    .login-page a:has-text("Return"),
-    .login-page a:has-text("return"),
-    .login-page a:has-text("←"),
     body.login-page a[href="/"],
-    body.login-page header a[href="/"] {
+    body.login-page header a[href="/"],
+    /* Скрываем все ссылки с текстом Return */
+    a:contains("Return"),
+    a:contains("return"),
+    a:contains("←") {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
@@ -230,6 +231,7 @@
         overflow: hidden !important;
         position: absolute !important;
         left: -9999px !important;
+        pointer-events: none !important;
     }
     
     /* Темная тема - белый текст для "Welcome back to" */
