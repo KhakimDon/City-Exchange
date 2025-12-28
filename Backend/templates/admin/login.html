@@ -96,10 +96,13 @@
         font-size: 14px !important;
     }
     
-    /* Кнопка входа - серый фон, без рамки */
+    /* Кнопка входа - зеленый фон #26A17B */
     .btn-primary,
-    input[type="submit"] {
-        background-color: #2d3136 !important;
+    input[type="submit"],
+    button[type="submit"] {
+        background-color: #26A17B !important;
+        background: #26A17B !important;
+        background-image: none !important;
         border: none !important;
         color: white !important;
         border-radius: 8px !important;
@@ -111,16 +114,12 @@
     }
     
     .btn-primary:hover,
-    input[type="submit"]:hover {
-        background-color: #3a3e44 !important;
+    input[type="submit"]:hover,
+    button[type="submit"]:hover {
+        background-color: #1d7a5d !important;
+        background: #1d7a5d !important;
         border: none !important;
         color: white !important;
-    }
-    
-    /* Убираем градиенты и фиолетовые цвета, заменяем на зеленый */
-    .btn-primary:not(:hover) {
-        background: #2d3136 !important;
-        background-image: none !important;
     }
     
     /* Заменяем все фиолетовые цвета на #26A17B */
