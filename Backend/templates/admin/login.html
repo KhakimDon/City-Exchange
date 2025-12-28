@@ -36,12 +36,28 @@
     .login-page [role="button"][aria-label*="Theme"],
     .login-page svg[class*="theme"],
     .login-page [class*="icon"][class*="theme"],
+    /* Скрываем переключатель темы в форме входа */
+    .login-box [class*="theme"],
+    .login-box .theme-toggle,
+    .login-box button[aria-label*="theme"],
+    .login-box button[title*="theme"],
+    .login-box [class*="toggle"],
+    .login-box button:has(svg),
+    .login-box button:has([class*="theme"]),
     /* Скрываем все кнопки в header кроме логотипа */
-    .login-page header > *:not(a):not([class*="logo"]):not([class*="brand"]) {
+    .login-page header > *:not(a):not([class*="logo"]):not([class*="brand"]),
+    /* Скрываем переключатель темы везде на странице входа */
+    .login-page *[class*="theme-toggle"],
+    .login-page *[class*="theme"]:not([class*="theme-toggle"]),
+    .login-page button:has(svg[class*="theme"]),
+    .login-page button:has([class*="theme"]) {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
         pointer-events: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
     
     /* Дефолтный стиль Unfold - темный фон */
