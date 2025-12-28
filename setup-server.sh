@@ -12,7 +12,14 @@ apt update && apt upgrade -y
 
 # Установка необходимых пакетов
 echo "📦 Установка зависимостей..."
-apt install -y python3 python3-pip python3-venv git nginx bun curl
+apt install -y python3 python3-pip python3-venv git nginx curl nodejs npm
+
+# Установка bun (опционально, если нужен)
+if ! command -v bun &> /dev/null; then
+    echo "📦 Установка bun..."
+    curl -fsSL https://bun.sh/install | bash || echo "⚠️  Bun не установлен, будет использован npm"
+    export PATH="$HOME/.bun/bin:$PATH" || true
+fi
 
 # Установка gunicorn для продакшена
 echo "📦 Установка gunicorn..."
@@ -67,10 +74,16 @@ python manage.py collectstatic --noinput
 echo "⚙️ Настройка Frontend..."
 cd /opt/city-exchange/Frontend
 
-if command -v bun &> /dev/null; then
-    bun install
-    bun run build
+# Проверяем наличие bun в PATH
+if command -v bun &> /dev/null || [ -f "$HOME/.bun/bin/bun" ]; then
+    if [ -f "$HOME/.bun/bin/bun" ]; then
+        export PATH="$HOME/.bun/bin:$PATH"
+    fi
+    echo "📦 Используем bun..."
+    bun install || npm install
+    bun run build || npm run build
 else
+    echo "📦 Используем npm..."
     npm install
     npm run build
 fi
