@@ -177,3 +177,18 @@
 {% endblock %}
 
 {% block bodyclass %}{{ block.super }} login-page{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script>
+    // Принудительно устанавливаем темную тему на странице входа
+    (function() {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.body.setAttribute('data-theme', 'dark');
+        if (localStorage) {
+            localStorage.setItem('theme', 'dark');
+            localStorage.setItem('unfold-theme', 'dark');
+        }
+    })();
+</script>
+{% endblock %}
