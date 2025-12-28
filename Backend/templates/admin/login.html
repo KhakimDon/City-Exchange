@@ -12,10 +12,11 @@
         display: none !important;
     }
     
-    /* Скрываем переключатель темы на странице входа */
+    /* Скрываем переключатель темы на странице входа - все возможные варианты */
     .login-page [class*="theme"],
     .login-page [class*="dark-mode"],
     .login-page [class*="light-mode"],
+    .login-page [class*="Theme"],
     .login-page button[aria-label*="theme"],
     .login-page button[aria-label*="Theme"],
     .login-page button[title*="theme"],
@@ -25,11 +26,22 @@
     .login-page .dark-mode-toggle,
     .login-page [id*="theme"],
     .login-page [id*="Theme"],
+    .login-page header button,
     .login-page header button:last-child,
     .login-page header [class*="toggle"],
-    .login-page .unfold-header button:last-child {
+    .login-page .unfold-header button,
+    .login-page .unfold-header button:last-child,
+    .login-page header > button,
+    .login-page [role="button"][aria-label*="theme"],
+    .login-page [role="button"][aria-label*="Theme"],
+    .login-page svg[class*="theme"],
+    .login-page [class*="icon"][class*="theme"],
+    /* Скрываем все кнопки в header кроме логотипа */
+    .login-page header > *:not(a):not([class*="logo"]):not([class*="brand"]) {
         display: none !important;
         visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
     
     /* Дефолтный стиль Unfold - темный фон */
@@ -181,13 +193,46 @@
 {% block extrahead %}
 {{ block.super }}
 <script>
-    // Принудительно устанавливаем темную тему на странице входа
+    // Принудительно устанавливаем темную тему на странице входа и блокируем переключение
     (function() {
+        // Устанавливаем темную тему
         document.documentElement.setAttribute('data-theme', 'dark');
         document.body.setAttribute('data-theme', 'dark');
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        
+        // Сохраняем в localStorage
         if (localStorage) {
             localStorage.setItem('theme', 'dark');
             localStorage.setItem('unfold-theme', 'dark');
+            localStorage.setItem('data-theme', 'dark');
+        }
+        
+        // Блокируем переключение темы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Скрываем все кнопки переключения темы
+            const themeButtons = document.querySelectorAll('[class*="theme"], [id*="theme"], button[aria-label*="theme"], button[title*="theme"]');
+            themeButtons.forEach(btn => {
+                btn.style.display = 'none';
+                btn.style.visibility = 'hidden';
+                btn.style.opacity = '0';
+                btn.style.pointerEvents = 'none';
+            });
+            
+            // Перехватываем клики на переключатели темы
+            document.addEventListener('click', function(e) {
+                const target = e.target.closest('[class*="theme"], [id*="theme"], button[aria-label*="theme"]');
+                if (target) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+        });
+        
+        // Переопределяем функцию переключения темы, если она есть
+        if (window.toggleTheme) {
+            window.toggleTheme = function() { return false; };
         }
     })();
 </script>
