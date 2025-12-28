@@ -40,7 +40,7 @@
         border-color: #1d7a5d !important;
     }
     
-    /* Скрываем логотип на странице входа */
+    /* Скрываем логотип на странице входа - все возможные варианты */
     .login-page img,
     .login-page img[src*="logo"],
     .login-page img[src*="Logo"],
@@ -49,10 +49,38 @@
     .login-page header img,
     .login-page .unfold-header img,
     .login-page .login-box-msg img,
-    .login-page .brand-image {
+    .login-page .brand-image,
+    /* Скрываем элементы с Tailwind классами */
+    .login-page .bg-cover,
+    .login-page [class*="bg-cover"],
+    .login-page [class*="grow"],
+    .login-page [class*="max-w-3xl"],
+    .login-page [class*="xl:max-w-4xl"],
+    .login-page [class*="xl:block"],
+    /* Скрываем все элементы с этими классами вместе */
+    .login-page .bg-cover.grow,
+    .login-page .bg-cover.hidden,
+    .login-page .bg-cover.max-w-3xl,
+    .login-page [class*="bg-cover"][class*="grow"],
+    .login-page [class*="bg-cover"][class*="hidden"],
+    .login-page [class*="bg-cover"][class*="max-w-3xl"],
+    .login-page [class*="bg-cover"][class*="xl:max-w-4xl"],
+    .login-page [class*="bg-cover"][class*="xl:block"] {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    /* Переопределяем xl:block для скрытия на всех размерах экрана */
+    @media (min-width: 1280px) {
+        .login-page .bg-cover,
+        .login-page [class*="bg-cover"],
+        .login-page [class*="xl:block"] {
+            display: none !important;
+        }
     }
 </style>
 {% endblock %}
