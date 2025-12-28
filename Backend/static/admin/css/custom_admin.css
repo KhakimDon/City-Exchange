@@ -543,6 +543,46 @@ body {
     color: inherit !important;
 }
 
+/* Popup профиля пользователя - позиционирование в header */
+header .dropdown-menu,
+header [class*="dropdown"],
+header [class*="menu"],
+.unfold-header .dropdown-menu,
+.unfold-header [class*="dropdown"],
+header .user-menu,
+header [id*="user-menu"],
+header [id*="profile-menu"] {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    margin-top: 0.5rem !important;
+    z-index: 1000 !important;
+    min-width: 200px !important;
+}
+
+/* Убеждаемся, что кнопка профиля в header */
+header [class*="user"],
+header [class*="profile"],
+header button[aria-label*="user"],
+header button[aria-label*="profile"],
+.unfold-header [class*="user"],
+.unfold-header [class*="profile"] {
+    position: relative !important;
+}
+
+/* Popup должен быть привязан к header */
+header .dropdown,
+header [class*="dropdown"] {
+    position: relative !important;
+}
+
+/* Убираем абсолютное позиционирование от body, если есть */
+body > .dropdown-menu:not(header .dropdown-menu),
+body > [class*="dropdown-menu"]:not(header [class*="dropdown-menu"]) {
+    display: none !important;
+}
+
 /* Табы */
 .nav-tabs {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
