@@ -198,7 +198,7 @@ UNFOLD = {
     "SITE_LOGO": "/static/admin/css/logo.png",
     "SITE_SYMBOL": "settings",  # Icon from https://fonts.google.com/icons
     "SHOW_HISTORY": True,
-    "SHOW_VIEW_ON_SITE": True,
+    "SHOW_VIEW_ON_SITE": False,
     "ENVIRONMENT": "config.settings.environment_callback",
     "DASHBOARD_CALLBACK": None,
     "LOGIN": {

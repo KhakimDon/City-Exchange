@@ -11,25 +11,42 @@
         --primary-light: rgba(38, 161, 123, 0.1) !important;
     }
     
-    /* Светлая тема - белый фон и темный текст */
-    [data-theme="light"] .login-page,
-    html[data-theme="light"] .login-page,
-    html:not([data-theme="dark"]) .login-page {
-        background: white !important;
+    /* 1. Скрываем кнопку "Return to site" - ВСЕ ВАРИАНТЫ */
+    .login-page a[href="/"],
+    .login-page a[href="/"]:not([href*="/admin/"]),
+    .login-page header a[href="/"],
+    .login-page .site-link,
+    .login-page .return-link,
+    .login-page [class*="return"],
+    .login-page [class*="site-link"],
+    body.login-page a[href="/"],
+    body.login-page header a[href="/"],
+    /* Скрываем все ссылки с текстом Return */
+    a[href="/"]:not([href*="/admin/"]),
+    header a[href="/"]:not([href*="/admin/"]) {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
+        pointer-events: none !important;
     }
     
-    /* Светлая тема - черные лейблы */
+    /* 2. Светлая тема - черные лейблы */
     [data-theme="light"] .login-page label,
     html[data-theme="light"] .login-page label,
     html:not([data-theme="dark"]) .login-page label,
-    [data-theme="light"] .login-page .form-group label,
-    html[data-theme="light"] .login-page .form-group label,
-    html:not([data-theme="dark"]) .login-page .form-group label {
-        color: #000 !important;
+    [data-theme="light"] label,
+    html[data-theme="light"] label,
+    html:not([data-theme="dark"]) label {
+        color: #000000 !important;
         color: black !important;
     }
     
-    /* Светлая тема - черный текст в инпутах */
+    /* 3. Светлая тема - черный текст в инпутах */
     [data-theme="light"] .login-page .form-control,
     html[data-theme="light"] .login-page .form-control,
     html:not([data-theme="dark"]) .login-page .form-control,
@@ -38,10 +55,13 @@
     [data-theme="light"] .login-page input[type="email"],
     html[data-theme="light"] .login-page input[type="text"],
     html[data-theme="light"] .login-page input[type="password"],
-    html[data-theme="light"] .login-page input[type="email"] {
+    html[data-theme="light"] .login-page input[type="email"],
+    html:not([data-theme="dark"]) .login-page input[type="text"],
+    html:not([data-theme="dark"]) .login-page input[type="password"],
+    html:not([data-theme="dark"]) .login-page input[type="email"] {
         background-color: white !important;
         border: 1px solid #ddd !important;
-        color: #000 !important;
+        color: #000000 !important;
         color: black !important;
     }
     
@@ -53,30 +73,56 @@
     [data-theme="light"] .login-page input[type="email"]:focus {
         background-color: white !important;
         border-color: #26A17B !important;
-        color: #000 !important;
+        color: #000000 !important;
         color: black !important;
         box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
     }
     
-    [data-theme="light"] .login-page .form-control::placeholder,
-    html[data-theme="light"] .login-page .form-control::placeholder,
-    html:not([data-theme="dark"]) .login-page .form-control::placeholder {
-        color: rgba(0, 0, 0, 0.5) !important;
+    /* 4. Иконки переключателя темы - белые при темной теме */
+    [data-theme="dark"] .theme-toggle,
+    html[data-theme="dark"] .theme-toggle,
+    [data-theme="dark"] .theme-toggle svg,
+    html[data-theme="dark"] .theme-toggle svg,
+    [data-theme="dark"] .theme-toggle path,
+    html[data-theme="dark"] .theme-toggle path,
+    [data-theme="dark"] .theme-toggle circle,
+    html[data-theme="dark"] .theme-toggle circle,
+    [data-theme="dark"] .theme-toggle *,
+    html[data-theme="dark"] .theme-toggle *,
+    [data-theme="dark"] button[aria-label*="theme"],
+    html[data-theme="dark"] button[aria-label*="theme"],
+    [data-theme="dark"] button[aria-label*="theme"] svg,
+    html[data-theme="dark"] button[aria-label*="theme"] svg {
+        color: white !important;
+        fill: white !important;
+        stroke: white !important;
     }
     
-    [data-theme="light"] .login-page h1,
-    [data-theme="light"] .login-page h2,
-    [data-theme="light"] .login-page h3,
-    [data-theme="light"] .login-page p,
-    html[data-theme="light"] .login-page h1,
-    html[data-theme="light"] .login-page h2,
-    html[data-theme="light"] .login-page h3,
-    html[data-theme="light"] .login-page p,
-    html:not([data-theme="dark"]) .login-page h1,
-    html:not([data-theme="dark"]) .login-page h2,
-    html:not([data-theme="dark"]) .login-page h3,
-    html:not([data-theme="dark"]) .login-page p {
-        color: #333 !important;
+    /* 5. Темная тема - белый текст для "Welcome back to" и всех текстов */
+    [data-theme="dark"] .login-page,
+    html[data-theme="dark"] .login-page {
+        background: #0E1829 !important;
+    }
+    
+    [data-theme="dark"] .login-page label,
+    html[data-theme="dark"] .login-page label,
+    [data-theme="dark"] .login-page p,
+    html[data-theme="dark"] .login-page p,
+    [data-theme="dark"] .login-page h1,
+    html[data-theme="dark"] .login-page h1,
+    [data-theme="dark"] .login-page h2,
+    html[data-theme="dark"] .login-page h2,
+    [data-theme="dark"] .login-page h3,
+    html[data-theme="dark"] .login-page h3,
+    [data-theme="dark"] .login-page .login-box-msg,
+    html[data-theme="dark"] .login-page .login-box-msg,
+    [data-theme="dark"] .login-page .login-box-msg *,
+    html[data-theme="dark"] .login-page .login-box-msg *,
+    [data-theme="dark"] .login-page span,
+    html[data-theme="dark"] .login-page span,
+    [data-theme="dark"] .login-page div,
+    html[data-theme="dark"] .login-page div {
+        color: white !important;
     }
     
     /* Применяем primary color ко всем элементам Unfold */
@@ -89,55 +135,6 @@
     .submit-row input[type="submit"],
     .text-primary,
     .text-primary-500 {
-        color: #26A17B !important;
-    }
-    
-    /* Заменяем ВСЕ фиолетовые и розовые цвета на #26A17B */
-    *[style*="purple"],
-    *[style*="violet"],
-    *[style*="#667eea"],
-    *[style*="#764ba2"],
-    *[style*="#6f42c1"],
-    *[style*="#7c3aed"],
-    *[style*="#8b5cf6"],
-    *[style*="#9333ea"],
-    *[style*="#a855f7"],
-    *[style*="#c084fc"],
-    *[style*="#d946ef"],
-    *[style*="#ec4899"],
-    *[style*="#f472b6"],
-    *[style*="rgb(102, 126, 234)"],
-    *[style*="rgb(118, 75, 162)"],
-    *[style*="rgb(139, 92, 246)"],
-    *[style*="rgb(147, 51, 234)"],
-    *[style*="rgb(168, 85, 247)"],
-    *[style*="rgb(192, 132, 252)"],
-    *[style*="rgb(217, 70, 239)"],
-    *[style*="rgb(236, 72, 153)"] {
-        color: #26A17B !important;
-        background-color: #26A17B !important;
-        border-color: #26A17B !important;
-    }
-    
-    /* Заменяем фиолетовые цвета в тексте */
-    h1, h2, h3, h4, h5, h6,
-    p, span, div, a,
-    [class*="text-primary"],
-    [class*="text-purple"],
-    [class*="text-violet"] {
-        color: inherit !important;
-    }
-    
-    /* Принудительно заменяем фиолетовый цвет в заголовках */
-    h1[style*="purple"],
-    h2[style*="purple"],
-    h3[style*="purple"],
-    h1[style*="violet"],
-    h2[style*="violet"],
-    h3[style*="violet"],
-    h1[style*="#667eea"],
-    h2[style*="#667eea"],
-    h3[style*="#667eea"] {
         color: #26A17B !important;
     }
     
@@ -158,6 +155,7 @@
     .submit-row input[type="submit"]:hover {
         background-color: #1d7a5d !important;
         border-color: #1d7a5d !important;
+        color: white !important;
     }
     
     /* Принудительно заменяем фиолетовые цвета в кнопках */
@@ -196,156 +194,30 @@
         outline-color: #26A17B !important;
     }
     
-    /* Убираем фиолетовые цвета из всех возможных состояний */
-    *:focus {
-        outline-color: #26A17B !important;
-    }
-    
-    *[style*="purple"]:focus,
-    *[style*="violet"]:focus,
-    *[style*="#667eea"]:focus,
-    *[style*="#764ba2"]:focus {
-        border-color: #26A17B !important;
-        box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
-    }
-    
-    /* Скрываем кнопку "Return to site" - все возможные варианты */
-    .login-page a[href="/"],
-    .login-page a[href*="/"]:not([href*="/admin/"]):not([href*="login"]):not([href*="logout"]),
-    .login-page .site-link,
-    .login-page .return-link,
-    .login-page header a[href="/"],
-    .login-page [class*="return"],
-    .login-page [class*="site-link"],
-    body.login-page a[href="/"],
-    body.login-page header a[href="/"],
-    /* Скрываем все ссылки с текстом Return */
-    a:contains("Return"),
-    a:contains("return"),
-    a:contains("←") {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        width: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        position: absolute !important;
-        left: -9999px !important;
-        pointer-events: none !important;
-    }
-    
-    /* Темная тема - белый текст для "Welcome back to" */
-    [data-theme="dark"] .login-page,
-    html[data-theme="dark"] .login-page {
-        background: #0E1829 !important;
-    }
-    
-    [data-theme="dark"] .login-page label,
-    html[data-theme="dark"] .login-page label,
-    [data-theme="dark"] .login-page p,
-    html[data-theme="dark"] .login-page p,
-    [data-theme="dark"] .login-page h1,
-    html[data-theme="dark"] .login-page h1,
-    [data-theme="dark"] .login-page h2,
-    html[data-theme="dark"] .login-page h2,
-    [data-theme="dark"] .login-page h3,
-    html[data-theme="dark"] .login-page h3,
-    [data-theme="dark"] .login-page .login-box-msg,
-    html[data-theme="dark"] .login-page .login-box-msg {
-        color: white !important;
-    }
-    
-    /* Иконки переключателя темы - белые при темной теме */
-    [data-theme="dark"] .theme-toggle svg,
-    html[data-theme="dark"] .theme-toggle svg,
-    [data-theme="dark"] .theme-toggle,
-    html[data-theme="dark"] .theme-toggle,
-    [data-theme="dark"] button[aria-label*="theme"] svg,
-    html[data-theme="dark"] button[aria-label*="theme"] svg,
-    [data-theme="dark"] [class*="theme"] svg,
-    html[data-theme="dark"] [class*="theme"] svg,
-    [data-theme="dark"] .theme-toggle path,
-    html[data-theme="dark"] .theme-toggle path,
-    [data-theme="dark"] .theme-toggle circle,
-    html[data-theme="dark"] .theme-toggle circle,
-    [data-theme="dark"] .theme-toggle *,
-    html[data-theme="dark"] .theme-toggle * {
-        color: white !important;
-        fill: white !important;
-        stroke: white !important;
-    }
-    
-    /* Светлая тема - черные лейблы и текст инпутов */
-    [data-theme="light"] .login-page label,
-    html[data-theme="light"] .login-page label,
-    html:not([data-theme="dark"]) .login-page label {
-        color: #000 !important;
-    }
-    
-    [data-theme="light"] .login-page .form-control,
-    html[data-theme="light"] .login-page .form-control,
-    html:not([data-theme="dark"]) .login-page .form-control {
-        background-color: white !important;
-        border: 1px solid #ddd !important;
-        color: #000 !important;
-    }
-    
-    [data-theme="light"] .login-page .form-control:focus,
-    html[data-theme="light"] .login-page .form-control:focus,
-    html:not([data-theme="dark"]) .login-page .form-control:focus {
-        background-color: white !important;
-        border-color: #26A17B !important;
-        color: #000 !important;
-        box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
-    }
-    
-    /* Скрываем логотип на странице входа - все возможные варианты */
+    /* Скрываем логотип на странице входа */
     .login-page img,
     .login-page img[src*="logo"],
-    .login-page img[src*="Logo"],
     .login-page [class*="logo"] img,
     .login-page [class*="brand"] img,
     .login-page header img,
     .login-page .unfold-header img,
     .login-page .login-box-msg img,
     .login-page .brand-image,
-    /* Скрываем элементы с Tailwind классами */
     .login-page .bg-cover,
     .login-page [class*="bg-cover"],
     .login-page [class*="grow"],
     .login-page [class*="max-w-3xl"],
     .login-page [class*="xl:max-w-4xl"],
     .login-page [class*="xl:block"],
-    /* Скрываем все элементы с этими классами вместе */
-    .login-page .bg-cover.grow,
-    .login-page .bg-cover.hidden,
-    .login-page .bg-cover.max-w-3xl,
-    .login-page [class*="bg-cover"][class*="grow"],
-    .login-page [class*="bg-cover"][class*="hidden"],
-    .login-page [class*="bg-cover"][class*="max-w-3xl"],
-    .login-page [class*="bg-cover"][class*="xl:max-w-4xl"],
-    .login-page [class*="bg-cover"][class*="xl:block"],
-    /* Скрываем все div с этими классами */
-    .login-page div[class*="bg-cover"],
-    .login-page div[class*="grow"],
-    .login-page div[class*="max-w-3xl"],
-    .login-page div[class*="xl:max-w-4xl"],
-    .login-page div[class*="xl:block"],
-    /* Скрываем все элементы на странице входа с этими классами */
-    body.login-page [class*="bg-cover"],
-    body.login-page [class*="grow"][class*="bg-cover"],
-    body.login-page [class*="max-w-3xl"][class*="bg-cover"] {
+    body.login-page [class*="bg-cover"] {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
         width: 0 !important;
         height: 0 !important;
         overflow: hidden !important;
-        position: absolute !important;
-        left: -9999px !important;
     }
     
-    /* Переопределяем xl:block для скрытия на всех размерах экрана */
     @media (min-width: 1280px) {
         .login-page .bg-cover,
         .login-page [class*="bg-cover"],
@@ -361,195 +233,44 @@
 {% block extrahead %}
 {{ block.super }}
 <script>
-    // Удаляем логотип со страницы входа
     (function() {
-        function removeLogo() {
-            // Ищем все элементы с классами bg-cover, grow, max-w-3xl, xl:max-w-4xl, xl:block
-            const logoElements = document.querySelectorAll(
-                '.bg-cover, [class*="bg-cover"], [class*="grow"], [class*="max-w-3xl"], [class*="xl:max-w-4xl"], [class*="xl:block"]'
-            );
-            logoElements.forEach(el => {
-                // Проверяем, содержит ли элемент классы bg-cover и grow
-                if (el.classList.contains('bg-cover') || 
-                    el.className.includes('bg-cover') || 
-                    (el.className.includes('grow') && el.className.includes('bg-cover'))) {
-                    el.style.display = 'none';
-                    el.style.visibility = 'hidden';
-                    el.style.opacity = '0';
-                    el.style.width = '0';
-                    el.style.height = '0';
-                    el.style.overflow = 'hidden';
-                    el.remove();
-                }
-            });
-            
-            // Удаляем все изображения логотипа
-            const images = document.querySelectorAll('img[src*="logo"], img[src*="Logo"]');
-            images.forEach(img => {
-                img.remove();
-            });
-            
-            // Удаляем элементы с классом brand-image
-            const brandImages = document.querySelectorAll('.brand-image, [class*="brand-image"]');
-            brandImages.forEach(el => {
-                el.remove();
-            });
-        }
+        'use strict';
         
-        // Применяем сразу
-        removeLogo();
-        
-        // Применяем после загрузки DOM
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', removeLogo);
-        } else {
-            removeLogo();
-        }
-        
-        // Применяем после полной загрузки
-        window.addEventListener('load', function() {
-            setTimeout(removeLogo, 100);
-            setTimeout(removeLogo, 500);
-        });
-        
-        // Наблюдаем за изменениями DOM
-        const observer = new MutationObserver(function(mutations) {
-            removeLogo();
-            replacePurpleColors();
-        });
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-            attributes: true
-        });
-        
-        // Функция для замены фиолетовых цветов на зеленый
-        function replacePurpleColors() {
-            // Заменяем цвета в кнопках
-            const buttons = document.querySelectorAll('button, input[type="submit"], .btn-primary, .button-primary');
-            buttons.forEach(btn => {
-                const style = window.getComputedStyle(btn);
-                const bgColor = style.backgroundColor;
-                const borderColor = style.borderColor;
-                
-                // Проверяем, если цвет фиолетовый
-                if (bgColor.includes('rgb(102, 126, 234)') || 
-                    bgColor.includes('rgb(118, 75, 162)') ||
-                    bgColor.includes('rgb(139, 92, 246)') ||
-                    bgColor.includes('rgb(147, 51, 234)') ||
-                    bgColor.includes('#667eea') ||
-                    bgColor.includes('#764ba2') ||
-                    bgColor.includes('#6f42c1') ||
-                    bgColor.includes('#7c3aed')) {
-                    btn.style.backgroundColor = '#26A17B';
-                    btn.style.background = '#26A17B';
-                    btn.style.backgroundImage = 'none';
-                }
-                
-                if (borderColor.includes('rgb(102, 126, 234)') || 
-                    borderColor.includes('rgb(118, 75, 162)') ||
-                    borderColor.includes('#667eea') ||
-                    borderColor.includes('#764ba2')) {
-                    btn.style.borderColor = '#26A17B';
-                }
-            });
-            
-            // Заменяем цвета в фокусе инпутов
-            const inputs = document.querySelectorAll('input, textarea, select');
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.style.borderColor = '#26A17B';
-                    this.style.boxShadow = '0 0 0 3px rgba(38, 161, 123, 0.1)';
-                    this.style.outlineColor = '#26A17B';
-                });
-            });
-        }
-        
-        // Применяем замену цветов
-        replacePurpleColors();
-        
-        // Применяем после загрузки
-        window.addEventListener('load', function() {
-            setTimeout(replacePurpleColors, 100);
-            setTimeout(replacePurpleColors, 500);
-        });
-        
-        // Удаляем кнопку "Return to site" - агрессивно
+        // 1. Удаляем кнопку "Return to site"
         function removeReturnButton() {
-            // Ищем все ссылки
             const allLinks = document.querySelectorAll('a');
             allLinks.forEach(link => {
                 const text = (link.textContent || link.innerText || '').trim();
                 const href = link.getAttribute('href') || '';
                 
-                // Удаляем если содержит "Return", "return", "←" или ведет на главную
                 if ((text.includes('Return') || text.includes('return') || text.includes('←') || text.includes('site')) && 
-                    (href === '/' || href === '' || href.includes('site'))) {
+                    (href === '/' || href === '')) {
                     link.style.setProperty('display', 'none', 'important');
                     link.style.setProperty('visibility', 'hidden', 'important');
                     link.style.setProperty('opacity', '0', 'important');
-                    link.style.setProperty('width', '0', 'important');
-                    link.style.setProperty('height', '0', 'important');
-                    link.style.setProperty('overflow', 'hidden', 'important');
-                    link.style.setProperty('position', 'absolute', 'important');
-                    link.style.setProperty('left', '-9999px', 'important');
                     link.style.setProperty('pointer-events', 'none', 'important');
                     try { link.remove(); } catch(e) {}
                 }
             });
-            
-            // Также ищем по классам и ID
-            const returnElements = document.querySelectorAll('[class*="return"], [class*="site-link"], [id*="return"], [id*="site-link"]');
-            returnElements.forEach(el => {
-                el.style.setProperty('display', 'none', 'important');
-                el.style.setProperty('visibility', 'hidden', 'important');
-                try { el.remove(); } catch(e) {}
-            });
         }
         
-        // Переводим "Welcome back to" на русский и делаем белым при темной теме - агрессивно
-        function translateWelcomeText() {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
-                          document.documentElement.classList.contains('dark') ||
-                          document.body.classList.contains('dark');
-            
-            const welcomeTexts = document.querySelectorAll('p, h1, h2, h3, span, div, label, *');
-            welcomeTexts.forEach(el => {
-                if (el.textContent || el.innerText) {
-                    const text = el.textContent || el.innerText;
-                    
-                    // Переводим текст
-                    if (text.includes('Welcome back to')) {
-                        el.textContent = text.replace(/Welcome back to/gi, 'Добро пожаловать в');
-                        el.innerText = text.replace(/Welcome back to/gi, 'Добро пожаловать в');
-                    }
-                    
-                    // Делаем белым при темной теме
-                    if (isDark && (text.includes('Добро пожаловать в') || text.includes('Welcome'))) {
-                        el.style.setProperty('color', 'white', 'important');
-                    }
-                }
-            });
-        }
-        
-        // Исправляем цвета лейблов и инпутов - агрессивно
+        // 2, 3. Исправляем цвета лейблов и инпутов
         function fixInputColors() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
                           document.documentElement.classList.contains('dark') ||
                           document.body.classList.contains('dark');
             
-            // Исправляем лейблы
-            const labels = document.querySelectorAll('label, .form-group label, [for]');
+            // Лейблы
+            const labels = document.querySelectorAll('label');
             labels.forEach(label => {
                 if (isDark) {
                     label.style.setProperty('color', 'white', 'important');
                 } else {
                     label.style.setProperty('color', '#000', 'important');
-                    label.style.setProperty('color', 'black', 'important');
                 }
             });
             
-            // Исправляем инпуты
+            // Инпуты
             const inputs = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], .form-control');
             inputs.forEach(input => {
                 if (isDark) {
@@ -557,25 +278,26 @@
                     input.style.setProperty('background-color', '#2d3136', 'important');
                 } else {
                     input.style.setProperty('color', '#000', 'important');
-                    input.style.setProperty('color', 'black', 'important');
                     input.style.setProperty('background-color', 'white', 'important');
                 }
             });
         }
         
-        // Исправляем иконки переключателя темы - агрессивно
+        // 4. Исправляем иконки переключателя темы
         function fixThemeToggleIcons() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
                           document.documentElement.classList.contains('dark') ||
                           document.body.classList.contains('dark');
             
             if (isDark) {
-                const themeToggles = document.querySelectorAll('.theme-toggle, button[aria-label*="theme"], [class*="theme"], [id*="theme"]');
+                const themeToggles = document.querySelectorAll('.theme-toggle, button[aria-label*="theme"], [class*="theme"]');
                 themeToggles.forEach(toggle => {
                     toggle.style.setProperty('color', 'white', 'important');
                     const svgs = toggle.querySelectorAll('svg, path, circle, line, polyline');
                     svgs.forEach(svg => {
                         svg.style.setProperty('color', 'white', 'important');
+                        svg.style.setProperty('fill', 'white', 'important');
+                        svg.style.setProperty('stroke', 'white', 'important');
                         svg.setAttribute('fill', 'white');
                         svg.setAttribute('stroke', 'white');
                         const paths = svg.querySelectorAll('path, circle, line, polyline');
@@ -590,21 +312,54 @@
             }
         }
         
-        // Применяем все функции
+        // 5. Переводим "Welcome back to" на русский и делаем белым при темной теме
+        function translateWelcomeText() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                          document.documentElement.classList.contains('dark') ||
+                          document.body.classList.contains('dark');
+            
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                if (el.children.length === 0) { // Только листовые элементы
+                    const text = el.textContent || el.innerText || '';
+                    if (text.includes('Welcome back to')) {
+                        el.textContent = text.replace(/Welcome back to/gi, 'Добро пожаловать в');
+                        el.innerText = text.replace(/Welcome back to/gi, 'Добро пожаловать в');
+                    }
+                    
+                    if (isDark && (text.includes('Добро пожаловать в') || text.includes('Welcome'))) {
+                        el.style.setProperty('color', 'white', 'important');
+                    }
+                }
+            });
+        }
+        
+        // Применяем все исправления
         function applyAllFixes() {
             removeReturnButton();
-            translateWelcomeText();
             fixInputColors();
             fixThemeToggleIcons();
+            translateWelcomeText();
         }
         
         // Применяем сразу
-        applyAllFixes();
-        
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyAllFixes);
+        if (document.body) {
+            applyAllFixes();
         }
         
+        // При загрузке DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                applyAllFixes();
+                setTimeout(applyAllFixes, 100);
+                setTimeout(applyAllFixes, 500);
+            });
+        } else {
+            applyAllFixes();
+            setTimeout(applyAllFixes, 100);
+        }
+        
+        // После полной загрузки
         window.addEventListener('load', function() {
             setTimeout(applyAllFixes, 100);
             setTimeout(applyAllFixes, 500);
@@ -612,16 +367,27 @@
         });
         
         // Наблюдаем за изменениями
-        const fixObserver = new MutationObserver(function(mutations) {
+        const observer = new MutationObserver(function() {
             applyAllFixes();
         });
-        fixObserver.observe(document.body, {
-            childList: true,
-            subtree: true,
-            characterData: true,
+        
+        if (document.body) {
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                characterData: true,
+                attributes: true,
+                attributeFilter: ['data-theme', 'class']
+            });
+        }
+        
+        observer.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ['data-theme', 'class']
         });
+        
+        // Периодическая проверка
+        setInterval(applyAllFixes, 500);
     })();
 </script>
 {% endblock %}
