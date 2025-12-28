@@ -78,7 +78,7 @@
         box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
     }
     
-    /* 4. Иконки переключателя темы - белые при темной теме */
+    /* 4. Иконки переключателя темы - белые при темной теме (ВЕЗДЕ, не только на странице логина) */
     [data-theme="dark"] .theme-toggle,
     html[data-theme="dark"] .theme-toggle,
     [data-theme="dark"] .theme-toggle svg,
@@ -92,7 +92,22 @@
     [data-theme="dark"] button[aria-label*="theme"],
     html[data-theme="dark"] button[aria-label*="theme"],
     [data-theme="dark"] button[aria-label*="theme"] svg,
-    html[data-theme="dark"] button[aria-label*="theme"] svg {
+    html[data-theme="dark"] button[aria-label*="theme"] svg,
+    [data-theme="dark"] button[aria-label*="Theme"],
+    html[data-theme="dark"] button[aria-label*="Theme"],
+    [data-theme="dark"] [class*="theme-toggle"],
+    html[data-theme="dark"] [class*="theme-toggle"],
+    [data-theme="dark"] [class*="theme-toggle"] svg,
+    html[data-theme="dark"] [class*="theme-toggle"] svg,
+    [data-theme="dark"] [class*="theme-toggle"] path,
+    html[data-theme="dark"] [class*="theme-toggle"] path,
+    [data-theme="dark"] [class*="theme-toggle"] circle,
+    html[data-theme="dark"] [class*="theme-toggle"] circle,
+    [data-theme="dark"] [id*="theme"],
+    html[data-theme="dark"] [id*="theme"],
+    /* Все SVG элементы в переключателе темы */
+    [data-theme="dark"] .theme-toggle svg *,
+    html[data-theme="dark"] .theme-toggle svg * {
         color: white !important;
         fill: white !important;
         stroke: white !important;
@@ -138,47 +153,66 @@
         color: #26A17B !important;
     }
     
-    .btn-primary,
-    .button-primary,
-    input[type="submit"].default,
-    .submit-row input[type="submit"],
-    input[type="submit"],
-    button[type="submit"] {
+    /* Кнопки на странице логина - ВСЕГДА белый текст */
+    .login-page .btn-primary,
+    .login-page .button-primary,
+    .login-page input[type="submit"].default,
+    .login-page .submit-row input[type="submit"],
+    .login-page input[type="submit"],
+    .login-page button[type="submit"],
+    .login-page .btn-primary *,
+    .login-page .button-primary *,
+    .login-page input[type="submit"] *,
+    .login-page button[type="submit"] *,
+    .login-page .btn-primary span,
+    .login-page .button-primary span,
+    .login-page input[type="submit"] span,
+    .login-page button[type="submit"] span {
         background-color: #26A17B !important;
         border-color: #26A17B !important;
         color: white !important;
     }
     
-    .btn-primary:hover,
-    .button-primary:hover,
-    input[type="submit"].default:hover,
-    .submit-row input[type="submit"]:hover {
+    .login-page .btn-primary:hover,
+    .login-page .button-primary:hover,
+    .login-page input[type="submit"].default:hover,
+    .login-page .submit-row input[type="submit"]:hover,
+    .login-page input[type="submit"]:hover,
+    .login-page button[type="submit"]:hover {
         background-color: #1d7a5d !important;
         border-color: #1d7a5d !important;
         color: white !important;
     }
     
-    /* Принудительно заменяем фиолетовые цвета в кнопках */
-    .btn-primary,
-    .button-primary,
-    input[type="submit"],
-    button[type="submit"],
-    .btn-primary:focus,
-    .button-primary:focus,
-    input[type="submit"]:focus,
-    button[type="submit"]:focus,
-    .btn-primary:active,
-    .button-primary:active,
-    input[type="submit"]:active,
-    button[type="submit"]:active,
-    .btn-primary:hover,
-    .button-primary:hover,
-    input[type="submit"]:hover,
-    button[type="submit"]:hover {
+    /* Принудительно заменяем фиолетовые цвета в кнопках на странице логина */
+    .login-page .btn-primary,
+    .login-page .button-primary,
+    .login-page input[type="submit"],
+    .login-page button[type="submit"],
+    .login-page .btn-primary:focus,
+    .login-page .button-primary:focus,
+    .login-page input[type="submit"]:focus,
+    .login-page button[type="submit"]:focus,
+    .login-page .btn-primary:active,
+    .login-page .button-primary:active,
+    .login-page input[type="submit"]:active,
+    .login-page button[type="submit"]:active,
+    .login-page .btn-primary:hover,
+    .login-page .button-primary:hover,
+    .login-page input[type="submit"]:hover,
+    .login-page button[type="submit"]:hover {
         background-color: #26A17B !important;
         background: #26A17B !important;
         background-image: none !important;
         border-color: #26A17B !important;
+        color: white !important;
+    }
+    
+    /* Все элементы внутри кнопок на странице логина - белый цвет */
+    .login-page .btn-primary *,
+    .login-page .button-primary *,
+    .login-page input[type="submit"] *,
+    .login-page button[type="submit"] * {
         color: white !important;
     }
     
@@ -283,14 +317,14 @@
             });
         }
         
-        // 4. Исправляем иконки переключателя темы
+        // 4. Исправляем иконки переключателя темы - ВЕЗДЕ, не только на странице логина
         function fixThemeToggleIcons() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
                           document.documentElement.classList.contains('dark') ||
                           document.body.classList.contains('dark');
             
             if (isDark) {
-                const themeToggles = document.querySelectorAll('.theme-toggle, button[aria-label*="theme"], [class*="theme"]');
+                const themeToggles = document.querySelectorAll('.theme-toggle, button[aria-label*="theme"], [class*="theme-toggle"], [id*="theme"]');
                 themeToggles.forEach(toggle => {
                     toggle.style.setProperty('color', 'white', 'important');
                     const svgs = toggle.querySelectorAll('svg, path, circle, line, polyline');
@@ -300,16 +334,29 @@
                         svg.style.setProperty('stroke', 'white', 'important');
                         svg.setAttribute('fill', 'white');
                         svg.setAttribute('stroke', 'white');
-                        const paths = svg.querySelectorAll('path, circle, line, polyline');
+                        const paths = svg.querySelectorAll('path, circle, line, polyline, g');
                         paths.forEach(path => {
                             path.setAttribute('fill', 'white');
                             path.setAttribute('stroke', 'white');
                             path.style.setProperty('fill', 'white', 'important');
                             path.style.setProperty('stroke', 'white', 'important');
+                            path.style.setProperty('color', 'white', 'important');
                         });
                     });
                 });
             }
+        }
+        
+        // Исправляем текст кнопок на странице логина - ВСЕГДА белый
+        function fixLoginButtonText() {
+            const buttons = document.querySelectorAll('.login-page .btn-primary, .login-page .button-primary, .login-page input[type="submit"], .login-page button[type="submit"]');
+            buttons.forEach(btn => {
+                btn.style.setProperty('color', 'white', 'important');
+                const children = btn.querySelectorAll('*');
+                children.forEach(child => {
+                    child.style.setProperty('color', 'white', 'important');
+                });
+            });
         }
         
         // 5. Переводим "Welcome back to" на русский и делаем белым при темной теме
@@ -340,6 +387,7 @@
             fixInputColors();
             fixThemeToggleIcons();
             translateWelcomeText();
+            fixLoginButtonText();
         }
         
         // Применяем сразу
