@@ -65,22 +65,103 @@
     .login-page [class*="bg-cover"][class*="hidden"],
     .login-page [class*="bg-cover"][class*="max-w-3xl"],
     .login-page [class*="bg-cover"][class*="xl:max-w-4xl"],
-    .login-page [class*="bg-cover"][class*="xl:block"] {
+    .login-page [class*="bg-cover"][class*="xl:block"],
+    /* Скрываем все div с этими классами */
+    .login-page div[class*="bg-cover"],
+    .login-page div[class*="grow"],
+    .login-page div[class*="max-w-3xl"],
+    .login-page div[class*="xl:max-w-4xl"],
+    .login-page div[class*="xl:block"],
+    /* Скрываем все элементы на странице входа с этими классами */
+    body.login-page [class*="bg-cover"],
+    body.login-page [class*="grow"][class*="bg-cover"],
+    body.login-page [class*="max-w-3xl"][class*="bg-cover"] {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
         width: 0 !important;
         height: 0 !important;
         overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
     
     /* Переопределяем xl:block для скрытия на всех размерах экрана */
     @media (min-width: 1280px) {
         .login-page .bg-cover,
         .login-page [class*="bg-cover"],
-        .login-page [class*="xl:block"] {
+        .login-page [class*="xl:block"],
+        body.login-page [class*="bg-cover"],
+        body.login-page [class*="xl:block"] {
             display: none !important;
         }
     }
 </style>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script>
+    // Удаляем логотип со страницы входа
+    (function() {
+        function removeLogo() {
+            // Ищем все элементы с классами bg-cover, grow, max-w-3xl, xl:max-w-4xl, xl:block
+            const logoElements = document.querySelectorAll(
+                '.bg-cover, [class*="bg-cover"], [class*="grow"], [class*="max-w-3xl"], [class*="xl:max-w-4xl"], [class*="xl:block"]'
+            );
+            logoElements.forEach(el => {
+                // Проверяем, содержит ли элемент классы bg-cover и grow
+                if (el.classList.contains('bg-cover') || 
+                    el.className.includes('bg-cover') || 
+                    (el.className.includes('grow') && el.className.includes('bg-cover'))) {
+                    el.style.display = 'none';
+                    el.style.visibility = 'hidden';
+                    el.style.opacity = '0';
+                    el.style.width = '0';
+                    el.style.height = '0';
+                    el.style.overflow = 'hidden';
+                    el.remove();
+                }
+            });
+            
+            // Удаляем все изображения логотипа
+            const images = document.querySelectorAll('img[src*="logo"], img[src*="Logo"]');
+            images.forEach(img => {
+                img.remove();
+            });
+            
+            // Удаляем элементы с классом brand-image
+            const brandImages = document.querySelectorAll('.brand-image, [class*="brand-image"]');
+            brandImages.forEach(el => {
+                el.remove();
+            });
+        }
+        
+        // Применяем сразу
+        removeLogo();
+        
+        // Применяем после загрузки DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', removeLogo);
+        } else {
+            removeLogo();
+        }
+        
+        // Применяем после полной загрузки
+        window.addEventListener('load', function() {
+            setTimeout(removeLogo, 100);
+            setTimeout(removeLogo, 500);
+        });
+        
+        // Наблюдаем за изменениями DOM
+        const observer = new MutationObserver(function(mutations) {
+            removeLogo();
+        });
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true
+        });
+    })();
+</script>
 {% endblock %}
