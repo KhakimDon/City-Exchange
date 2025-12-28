@@ -474,15 +474,36 @@
             setTimeout(replacePurpleColors, 500);
         });
         
-        // Удаляем кнопку "Return to site"
+        // Удаляем кнопку "Return to site" - агрессивно
         function removeReturnButton() {
-            const returnButtons = document.querySelectorAll('a[href="/"], a:has-text("Return"), a:has-text("return"), a:has-text("←")');
-            returnButtons.forEach(btn => {
-                if (btn.textContent && (btn.textContent.includes('Return') || btn.textContent.includes('return') || btn.textContent.includes('←'))) {
-                    btn.style.display = 'none';
-                    btn.style.visibility = 'hidden';
-                    btn.remove();
+            // Ищем все ссылки
+            const allLinks = document.querySelectorAll('a');
+            allLinks.forEach(link => {
+                const text = (link.textContent || link.innerText || '').trim();
+                const href = link.getAttribute('href') || '';
+                
+                // Удаляем если содержит "Return", "return", "←" или ведет на главную
+                if ((text.includes('Return') || text.includes('return') || text.includes('←') || text.includes('site')) && 
+                    (href === '/' || href === '' || href.includes('site'))) {
+                    link.style.setProperty('display', 'none', 'important');
+                    link.style.setProperty('visibility', 'hidden', 'important');
+                    link.style.setProperty('opacity', '0', 'important');
+                    link.style.setProperty('width', '0', 'important');
+                    link.style.setProperty('height', '0', 'important');
+                    link.style.setProperty('overflow', 'hidden', 'important');
+                    link.style.setProperty('position', 'absolute', 'important');
+                    link.style.setProperty('left', '-9999px', 'important');
+                    link.style.setProperty('pointer-events', 'none', 'important');
+                    try { link.remove(); } catch(e) {}
                 }
+            });
+            
+            // Также ищем по классам и ID
+            const returnElements = document.querySelectorAll('[class*="return"], [class*="site-link"], [id*="return"], [id*="site-link"]');
+            returnElements.forEach(el => {
+                el.style.setProperty('display', 'none', 'important');
+                el.style.setProperty('visibility', 'hidden', 'important');
+                try { el.remove(); } catch(e) {}
             });
         }
         
