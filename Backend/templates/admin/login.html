@@ -70,18 +70,42 @@
         padding: 20px !important;
     }
     
-    /* Скрываем логотип на странице входа */
+    /* Скрываем логотип на странице входа - все возможные варианты */
     .login-box-msg img,
     .login-box-msg .brand-image,
+    .login-page img,
     .login-page img[src*="logo"],
+    .login-page img[src*="Logo"],
+    .login-page img[src*="LOGO"],
     .login-page [class*="logo"],
+    .login-page [class*="Logo"],
+    .login-page [class*="LOGO"],
     .login-page [class*="brand"],
+    .login-page [class*="Brand"],
     .login-page header img,
     .login-page header [class*="logo"],
-    .login-page header [class*="brand"] {
+    .login-page header [class*="brand"],
+    .login-page .unfold-header img,
+    .login-page .unfold-header [class*="logo"],
+    .login-page .unfold-header [class*="brand"],
+    .login-page [data-unfold] img,
+    .login-page [data-unfold] [class*="logo"],
+    .login-page [data-unfold] [class*="brand"],
+    .login-page .site-logo,
+    .login-page .brand-logo,
+    .login-page .unfold-brand,
+    .login-page a[href="/admin/"] img,
+    .login-page a[href="/admin/"] [class*="logo"],
+    /* Скрываем все изображения на странице входа */
+    .login-page img:not([src*="data:"]),
+    /* Скрываем через JavaScript тоже */
+    body.login-page img {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
     
     .login-box-msg {
@@ -269,6 +293,24 @@
             });
         }
         
+        // Функция для скрытия логотипа
+        function hideLogo() {
+            const logos = document.querySelectorAll(
+                'img[src*="logo"], img[src*="Logo"], [class*="logo"], [class*="brand"], .site-logo, .brand-logo, .unfold-brand'
+            );
+            logos.forEach(logo => {
+                logo.style.display = 'none';
+                logo.style.visibility = 'hidden';
+                logo.style.opacity = '0';
+                logo.style.width = '0';
+                logo.style.height = '0';
+                logo.style.overflow = 'hidden';
+                if (logo.tagName === 'IMG') {
+                    logo.remove();
+                }
+            });
+        }
+        
         // Блокируем переключение темы
         function blockThemeToggle() {
             // Перехватываем клики на переключатели темы
@@ -303,18 +345,21 @@
         
         // Применяем сразу
         hideThemeToggle();
+        hideLogo();
         blockThemeToggle();
         
         // Применяем после загрузки DOM
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function() {
                 hideThemeToggle();
+                hideLogo();
                 blockThemeToggle();
                 // Принудительно устанавливаем темную тему
                 document.documentElement.setAttribute('data-theme', 'dark');
             });
         } else {
             hideThemeToggle();
+            hideLogo();
             blockThemeToggle();
         }
         
@@ -322,6 +367,7 @@
         window.addEventListener('load', function() {
             setTimeout(function() {
                 hideThemeToggle();
+                hideLogo();
                 blockThemeToggle();
                 document.documentElement.setAttribute('data-theme', 'dark');
             }, 100);
@@ -330,6 +376,7 @@
         // Наблюдаем за изменениями DOM
         const observer = new MutationObserver(function(mutations) {
             hideThemeToggle();
+            hideLogo();
             document.documentElement.setAttribute('data-theme', 'dark');
         });
         observer.observe(document.body, {
