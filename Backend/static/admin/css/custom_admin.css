@@ -1,5 +1,65 @@
 /* Custom Admin CSS for City Exchange */
-/* Используем цвета по умолчанию Unfold */
+/* Заменяем фиолетовые цвета на #26A17B (зеленый) */
+
+/* Переопределяем цвета Unfold с фиолетового на зеленый */
+:root {
+    --primary-color: #26A17B !important;
+    --primary-hover: #1d7a5d !important;
+    --primary-light: rgba(38, 161, 123, 0.1) !important;
+}
+
+/* Основные цвета Unfold */
+[data-theme="light"] [data-unfold],
+[data-theme="dark"] [data-unfold],
+.unfold-primary,
+.btn-primary,
+.button-primary,
+input[type="submit"].default,
+.submit-row input[type="submit"] {
+    background-color: #26A17B !important;
+    border-color: #26A17B !important;
+    color: white !important;
+}
+
+.btn-primary:hover,
+.button-primary:hover,
+input[type="submit"].default:hover,
+.submit-row input[type="submit"]:hover {
+    background-color: #1d7a5d !important;
+    border-color: #1d7a5d !important;
+}
+
+/* Активные ссылки и элементы */
+.nav-sidebar .nav-link.active,
+.nav-sidebar .nav-link:hover,
+.nav-sidebar .nav-item.active > .nav-link,
+a:focus,
+a:hover {
+    color: #26A17B !important;
+}
+
+/* Акцентные цвета */
+.text-primary,
+.badge-primary,
+.alert-primary {
+    color: #26A17B !important;
+    background-color: rgba(38, 161, 123, 0.1) !important;
+    border-color: #26A17B !important;
+}
+
+/* Фокус на полях ввода */
+.form-control:focus,
+select:focus,
+textarea:focus {
+    border-color: #26A17B !important;
+    box-shadow: 0 0 0 3px rgba(38, 161, 123, 0.1) !important;
+}
+
+/* Чекбоксы и радиокнопки */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    accent-color: #26A17B !important;
+}
 
 /* Скрываем кнопку "Return to site" на странице входа */
 .login-page a[href="/"],
