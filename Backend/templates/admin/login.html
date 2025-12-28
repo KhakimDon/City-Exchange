@@ -12,6 +12,26 @@
         display: none !important;
     }
     
+    /* Скрываем переключатель темы на странице входа */
+    .login-page [class*="theme"],
+    .login-page [class*="dark-mode"],
+    .login-page [class*="light-mode"],
+    .login-page button[aria-label*="theme"],
+    .login-page button[aria-label*="Theme"],
+    .login-page button[title*="theme"],
+    .login-page button[title*="Theme"],
+    .login-page [data-theme-toggle],
+    .login-page .theme-toggle,
+    .login-page .dark-mode-toggle,
+    .login-page [id*="theme"],
+    .login-page [id*="Theme"],
+    .login-page header button:last-child,
+    .login-page header [class*="toggle"],
+    .login-page .unfold-header button:last-child {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
     /* Дефолтный стиль Unfold - темный фон */
     .login-page {
         background: #0E1829 !important;
