@@ -232,19 +232,40 @@ html[data-theme="dark"] .login-page .login-box-msg * {
     color: white !important;
 }
 
-/* Иконки переключателя темы - белые при темной теме */
-[data-theme="dark"] .theme-toggle svg,
-html[data-theme="dark"] .theme-toggle svg,
+/* Иконки переключателя темы - белые при темной теме (ВЕЗДЕ) */
 [data-theme="dark"] .theme-toggle,
 html[data-theme="dark"] .theme-toggle,
-[data-theme="dark"] button[aria-label*="theme"] svg,
-html[data-theme="dark"] button[aria-label*="theme"] svg,
-[data-theme="dark"] [class*="theme"] svg,
-html[data-theme="dark"] [class*="theme"] svg,
+[data-theme="dark"] .theme-toggle svg,
+html[data-theme="dark"] .theme-toggle svg,
 [data-theme="dark"] .theme-toggle path,
 html[data-theme="dark"] .theme-toggle path,
 [data-theme="dark"] .theme-toggle circle,
-html[data-theme="dark"] .theme-toggle circle {
+html[data-theme="dark"] .theme-toggle circle,
+[data-theme="dark"] .theme-toggle *,
+html[data-theme="dark"] .theme-toggle *,
+[data-theme="dark"] button[aria-label*="theme"],
+html[data-theme="dark"] button[aria-label*="theme"],
+[data-theme="dark"] button[aria-label*="theme"] svg,
+html[data-theme="dark"] button[aria-label*="theme"] svg,
+[data-theme="dark"] button[aria-label*="Theme"],
+html[data-theme="dark"] button[aria-label*="Theme"],
+[data-theme="dark"] [class*="theme-toggle"],
+html[data-theme="dark"] [class*="theme-toggle"],
+[data-theme="dark"] [class*="theme-toggle"] svg,
+html[data-theme="dark"] [class*="theme-toggle"] svg,
+[data-theme="dark"] [class*="theme-toggle"] path,
+html[data-theme="dark"] [class*="theme-toggle"] path,
+[data-theme="dark"] [class*="theme-toggle"] circle,
+html[data-theme="dark"] [class*="theme-toggle"] circle,
+[data-theme="dark"] [id*="theme"],
+html[data-theme="dark"] [id*="theme"],
+/* Все SVG элементы в переключателе темы */
+[data-theme="dark"] .theme-toggle svg *,
+html[data-theme="dark"] .theme-toggle svg *,
+[data-theme="dark"] .theme-toggle svg path,
+html[data-theme="dark"] .theme-toggle svg path,
+[data-theme="dark"] .theme-toggle svg circle,
+html[data-theme="dark"] .theme-toggle svg circle {
     color: white !important;
     fill: white !important;
     stroke: white !important;
