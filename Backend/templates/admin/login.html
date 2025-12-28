@@ -41,7 +41,7 @@
         display: none !important;
     }
     
-    /* Форма входа - простая и чистая */
+    /* Форма входа - простая и чистая, без рамок */
     .login-box {
         background: transparent !important;
         border: none !important;
@@ -52,10 +52,23 @@
         margin: 0 auto !important;
     }
     
-    /* Поля ввода - серый фон, белая рамка */
+    /* Убираем все рамки и границы */
+    .login-box * {
+        border: none !important;
+        outline: none !important;
+    }
+    
+    .login-box .card,
+    .login-box .card-body {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    
+    /* Поля ввода - серый фон, без видимой рамки */
     .form-control {
         background-color: #2d3136 !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border: none !important;
         border-radius: 8px !important;
         color: white !important;
         padding: 12px 15px !important;
@@ -64,9 +77,9 @@
     
     .form-control:focus {
         background-color: #2d3136 !important;
-        border-color: rgba(255, 255, 255, 0.4) !important;
+        border: none !important;
         color: white !important;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+        box-shadow: none !important;
         outline: none !important;
     }
     
@@ -83,11 +96,11 @@
         font-size: 14px !important;
     }
     
-    /* Кнопка входа - серый фон, белая рамка */
+    /* Кнопка входа - серый фон, без рамки */
     .btn-primary,
     input[type="submit"] {
         background-color: #2d3136 !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border: none !important;
         color: white !important;
         border-radius: 8px !important;
         padding: 12px 30px !important;
@@ -100,7 +113,7 @@
     .btn-primary:hover,
     input[type="submit"]:hover {
         background-color: #3a3e44 !important;
-        border-color: rgba(255, 255, 255, 0.3) !important;
+        border: none !important;
         color: white !important;
     }
     
