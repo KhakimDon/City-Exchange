@@ -73,9 +73,15 @@
         display: none !important;
     }
     
-    /* Форма входа - простая и чистая, без рамок */
-    .login-box {
+    /* Форма входа - простая и чистая, без рамок и белого фона */
+    .login-box,
+    .login-box .card,
+    .login-box .card-body,
+    .login-box form,
+    .login-box > div,
+    .login-box > * {
         background: transparent !important;
+        background-color: transparent !important;
         border: none !important;
         box-shadow: none !important;
         padding: 0 !important;
@@ -84,9 +90,13 @@
         margin: 0 auto !important;
     }
     
-    .login-box .card,
-    .login-box .card-body {
+    /* Убираем все белые фоны и рамки */
+    .login-page .card,
+    .login-page .card-body,
+    .login-page [class*="card"],
+    .login-page [class*="box"]:not(.login-box-msg) {
         background: transparent !important;
+        background-color: transparent !important;
         border: none !important;
         box-shadow: none !important;
     }
@@ -164,7 +174,19 @@
     .login-box-msg b,
     .login-box-msg p strong,
     .login-box-msg [class*="text-primary"],
-    .login-box-msg [class*="primary"]:not(.btn-primary):not(.form-control) {
+    .login-box-msg [class*="primary"]:not(.btn-primary):not(.form-control),
+    /* Принудительно заменяем фиолетовый цвет в "City Exchange Admin" */
+    .login-page h2,
+    .login-page h3,
+    .login-page strong,
+    .login-page b,
+    .login-page [style*="purple"],
+    .login-page [style*="violet"],
+    .login-page [style*="#667eea"],
+    .login-page [style*="#764ba2"],
+    .login-page [style*="#6f42c1"],
+    .login-page [style*="#7c3aed"],
+    .login-page [style*="#8b5cf6"] {
         color: #26A17B !important;
     }
     
@@ -195,11 +217,12 @@
 <script>
     // Принудительно устанавливаем темную тему на странице входа и блокируем переключение
     (function() {
-        // Устанавливаем темную тему
+        // Устанавливаем темную тему сразу
         document.documentElement.setAttribute('data-theme', 'dark');
         document.body.setAttribute('data-theme', 'dark');
         document.documentElement.classList.remove('light');
         document.documentElement.classList.add('dark');
+        document.documentElement.style.colorScheme = 'dark';
         
         // Сохраняем в localStorage
         if (localStorage) {
@@ -208,32 +231,91 @@
             localStorage.setItem('data-theme', 'dark');
         }
         
-        // Блокируем переключение темы
-        document.addEventListener('DOMContentLoaded', function() {
-            // Скрываем все кнопки переключения темы
-            const themeButtons = document.querySelectorAll('[class*="theme"], [id*="theme"], button[aria-label*="theme"], button[title*="theme"]');
+        // Функция для скрытия переключателя темы
+        function hideThemeToggle() {
+            const themeButtons = document.querySelectorAll(
+                '[class*="theme"], [id*="theme"], button[aria-label*="theme"], button[title*="theme"], .theme-toggle, [data-theme-toggle]'
+            );
             themeButtons.forEach(btn => {
                 btn.style.display = 'none';
                 btn.style.visibility = 'hidden';
                 btn.style.opacity = '0';
                 btn.style.pointerEvents = 'none';
+                btn.style.width = '0';
+                btn.style.height = '0';
+                btn.style.overflow = 'hidden';
+                btn.remove();
             });
-            
+        }
+        
+        // Блокируем переключение темы
+        function blockThemeToggle() {
             // Перехватываем клики на переключатели темы
             document.addEventListener('click', function(e) {
-                const target = e.target.closest('[class*="theme"], [id*="theme"], button[aria-label*="theme"]');
+                const target = e.target.closest('[class*="theme"], [id*="theme"], button[aria-label*="theme"], button[title*="theme"], .theme-toggle');
                 if (target) {
                     e.preventDefault();
                     e.stopPropagation();
+                    e.stopImmediatePropagation();
                     return false;
                 }
             }, true);
+            
+            // Переопределяем функцию переключения темы
+            if (window.cycleTheme) {
+                window.cycleTheme = function() { 
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    return false; 
+                };
+            }
+            if (window.setTheme) {
+                const originalSetTheme = window.setTheme;
+                window.setTheme = function(mode) {
+                    if (mode !== 'dark') {
+                        originalSetTheme('dark');
+                        return;
+                    }
+                    originalSetTheme(mode);
+                };
+            }
+        }
+        
+        // Применяем сразу
+        hideThemeToggle();
+        blockThemeToggle();
+        
+        // Применяем после загрузки DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                hideThemeToggle();
+                blockThemeToggle();
+                // Принудительно устанавливаем темную тему
+                document.documentElement.setAttribute('data-theme', 'dark');
+            });
+        } else {
+            hideThemeToggle();
+            blockThemeToggle();
+        }
+        
+        // Применяем после полной загрузки
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                hideThemeToggle();
+                blockThemeToggle();
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }, 100);
         });
         
-        // Переопределяем функцию переключения темы, если она есть
-        if (window.toggleTheme) {
-            window.toggleTheme = function() { return false; };
-        }
+        // Наблюдаем за изменениями DOM
+        const observer = new MutationObserver(function(mutations) {
+            hideThemeToggle();
+            document.documentElement.setAttribute('data-theme', 'dark');
+        });
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true
+        });
     })();
 </script>
 {% endblock %}
