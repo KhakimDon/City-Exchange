@@ -131,6 +131,45 @@ button[type="submit"] span {
     color: white !important;
 }
 
+/* Кнопки на странице логина - ВСЕГДА белый текст */
+.login-page .btn-primary,
+.login-page .button-primary,
+.login-page input[type="submit"].default,
+.login-page .submit-row input[type="submit"],
+.login-page input[type="submit"],
+.login-page button[type="submit"],
+.login-page .btn-primary *,
+.login-page .button-primary *,
+.login-page input[type="submit"] *,
+.login-page button[type="submit"] *,
+.login-page .btn-primary span,
+.login-page .button-primary span,
+.login-page input[type="submit"] span,
+.login-page button[type="submit"] span {
+    background-color: #26A17B !important;
+    border-color: #26A17B !important;
+    color: white !important;
+}
+
+.login-page .btn-primary:hover,
+.login-page .button-primary:hover,
+.login-page input[type="submit"].default:hover,
+.login-page .submit-row input[type="submit"]:hover,
+.login-page input[type="submit"]:hover,
+.login-page button[type="submit"]:hover {
+    background-color: #1d7a5d !important;
+    border-color: #1d7a5d !important;
+    color: white !important;
+}
+
+/* Все элементы внутри кнопок на странице логина - белый цвет */
+.login-page .btn-primary *,
+.login-page .button-primary *,
+.login-page input[type="submit"] *,
+.login-page button[type="submit"] * {
+    color: white !important;
+}
+
 /* Убираем фиолетовые градиенты и фоны из кнопок */
 .btn-primary[style*="purple"],
 .btn-primary[style*="violet"],
