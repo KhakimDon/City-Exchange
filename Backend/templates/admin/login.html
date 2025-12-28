@@ -484,70 +484,87 @@
             });
         }
         
-        // Переводим "Welcome back to" на русский и делаем белым при темной теме
+        // Переводим "Welcome back to" на русский и делаем белым при темной теме - агрессивно
         function translateWelcomeText() {
-            const welcomeTexts = document.querySelectorAll('p, h1, h2, h3, span, div, label');
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                          document.documentElement.classList.contains('dark') ||
+                          document.body.classList.contains('dark');
+            
+            const welcomeTexts = document.querySelectorAll('p, h1, h2, h3, span, div, label, *');
             welcomeTexts.forEach(el => {
-                if (el.textContent) {
+                if (el.textContent || el.innerText) {
+                    const text = el.textContent || el.innerText;
+                    
                     // Переводим текст
-                    if (el.textContent.includes('Welcome back to')) {
-                        el.textContent = el.textContent.replace('Welcome back to', 'Добро пожаловать в');
+                    if (text.includes('Welcome back to')) {
+                        el.textContent = text.replace(/Welcome back to/gi, 'Добро пожаловать в');
+                        el.innerText = text.replace(/Welcome back to/gi, 'Добро пожаловать в');
                     }
                     
                     // Делаем белым при темной теме
-                    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
-                                   document.documentElement.classList.contains('dark');
-                    if (isDark && (el.textContent.includes('Добро пожаловать в') || el.textContent.includes('Welcome'))) {
-                        el.style.color = 'white';
+                    if (isDark && (text.includes('Добро пожаловать в') || text.includes('Welcome'))) {
+                        el.style.setProperty('color', 'white', 'important');
                     }
                 }
             });
         }
         
-        // Исправляем цвета лейблов и инпутов
+        // Исправляем цвета лейблов и инпутов - агрессивно
         function fixInputColors() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
-                          document.documentElement.classList.contains('dark');
+                          document.documentElement.classList.contains('dark') ||
+                          document.body.classList.contains('dark');
             
-            const labels = document.querySelectorAll('.login-page label');
+            // Исправляем лейблы
+            const labels = document.querySelectorAll('label, .form-group label, [for]');
             labels.forEach(label => {
                 if (isDark) {
-                    label.style.color = 'white';
+                    label.style.setProperty('color', 'white', 'important');
                 } else {
-                    label.style.color = '#000';
-                    label.style.color = 'black';
+                    label.style.setProperty('color', '#000', 'important');
+                    label.style.setProperty('color', 'black', 'important');
                 }
             });
             
-            const inputs = document.querySelectorAll('.login-page input[type="text"], .login-page input[type="password"], .login-page input[type="email"]');
+            // Исправляем инпуты
+            const inputs = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], .form-control');
             inputs.forEach(input => {
                 if (isDark) {
-                    input.style.color = 'white';
-                    input.style.backgroundColor = '#2d3136';
+                    input.style.setProperty('color', 'white', 'important');
+                    input.style.setProperty('background-color', '#2d3136', 'important');
                 } else {
-                    input.style.color = '#000';
-                    input.style.color = 'black';
-                    input.style.backgroundColor = 'white';
+                    input.style.setProperty('color', '#000', 'important');
+                    input.style.setProperty('color', 'black', 'important');
+                    input.style.setProperty('background-color', 'white', 'important');
                 }
             });
         }
         
-        // Исправляем иконки переключателя темы
+        // Исправляем иконки переключателя темы - агрессивно
         function fixThemeToggleIcons() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
-                          document.documentElement.classList.contains('dark');
+                          document.documentElement.classList.contains('dark') ||
+                          document.body.classList.contains('dark');
             
-            const themeToggles = document.querySelectorAll('.theme-toggle, button[aria-label*="theme"], [class*="theme-toggle"]');
-            themeToggles.forEach(toggle => {
-                const svgs = toggle.querySelectorAll('svg, path, circle');
-                svgs.forEach(svg => {
-                    if (isDark) {
-                        svg.style.color = 'white';
-                        svg.style.fill = 'white';
-                        svg.style.stroke = 'white';
-                    }
+            if (isDark) {
+                const themeToggles = document.querySelectorAll('.theme-toggle, button[aria-label*="theme"], [class*="theme"], [id*="theme"]');
+                themeToggles.forEach(toggle => {
+                    toggle.style.setProperty('color', 'white', 'important');
+                    const svgs = toggle.querySelectorAll('svg, path, circle, line, polyline');
+                    svgs.forEach(svg => {
+                        svg.style.setProperty('color', 'white', 'important');
+                        svg.setAttribute('fill', 'white');
+                        svg.setAttribute('stroke', 'white');
+                        const paths = svg.querySelectorAll('path, circle, line, polyline');
+                        paths.forEach(path => {
+                            path.setAttribute('fill', 'white');
+                            path.setAttribute('stroke', 'white');
+                            path.style.setProperty('fill', 'white', 'important');
+                            path.style.setProperty('stroke', 'white', 'important');
+                        });
+                    });
                 });
-            });
+            }
         }
         
         // Применяем все функции
