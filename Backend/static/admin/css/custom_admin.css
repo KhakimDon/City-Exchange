@@ -8,6 +8,11 @@
     --primary-light: rgba(38, 161, 123, 0.1) !important;
 }
 
+/* Tailwind CSS класс text-primary-500 */
+.text-primary-500 {
+    color: #26A17B !important;
+}
+
 /* Основные цвета Unfold */
 [data-theme="light"] [data-unfold],
 [data-theme="dark"] [data-unfold],
