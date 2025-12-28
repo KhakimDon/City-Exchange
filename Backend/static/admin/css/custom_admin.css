@@ -79,9 +79,12 @@ button.btn-primary {
 .btn-primary:hover,
 .button-primary:hover,
 input[type="submit"].default:hover,
-.submit-row input[type="submit"]:hover {
+.submit-row input[type="submit"]:hover,
+input[type="submit"]:hover,
+button[type="submit"]:hover {
     background-color: #1d7a5d !important;
     border-color: #1d7a5d !important;
+    color: white !important;
 }
 
 /* Принудительно заменяем фиолетовые цвета в кнопках во всех состояниях */
@@ -102,11 +105,29 @@ button[type="submit"]:active,
 .btn-primary:hover,
 .button-primary:hover,
 input[type="submit"]:hover,
-button[type="submit"]:hover {
+button[type="submit"]:hover,
+/* Все возможные варианты кнопок */
+button.btn,
+button[class*="btn"],
+input[class*="btn"],
+a.btn,
+a[class*="btn"] {
     background-color: #26A17B !important;
     background: #26A17B !important;
     background-image: none !important;
     border-color: #26A17B !important;
+    color: white !important;
+}
+
+/* Убеждаемся, что текст кнопок всегда белый */
+.btn-primary *,
+.button-primary *,
+input[type="submit"] *,
+button[type="submit"] *,
+.btn-primary span,
+.button-primary span,
+input[type="submit"] span,
+button[type="submit"] span {
     color: white !important;
 }
 
