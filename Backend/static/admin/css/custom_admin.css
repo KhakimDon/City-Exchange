@@ -74,19 +74,34 @@ body.login-page .unfold-header a[href="/"]:not([class*="logo"]) {
     visibility: hidden !important;
 }
 
-/* Заменяем все фиолетовые цвета на #26A17B на странице входа */
-.login-page *[style*="purple"],
-.login-page *[style*="violet"],
-.login-page *[style*="#667eea"],
-.login-page *[style*="#764ba2"],
-.login-page *[style*="#6f42c1"],
-.login-page *[style*="#7c3aed"],
-.login-page *[style*="#8b5cf6"],
-.login-page *[style*="rgb(102, 126, 234)"],
-.login-page *[style*="rgb(118, 75, 162)"] {
+/* Заменяем фиолетовые цвета на #26A17B на странице входа (только для текста и кнопок, НЕ для полей ввода) */
+.login-page *[style*="purple"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="violet"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="#667eea"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="#764ba2"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="#6f42c1"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="#7c3aed"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="#8b5cf6"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="rgb(102, 126, 234)"]:not(input):not(.form-control):not(textarea):not(select),
+.login-page *[style*="rgb(118, 75, 162)"]:not(input):not(.form-control):not(textarea):not(select) {
     color: #26A17B !important;
+}
+
+/* Фон заменяем только для кнопок */
+.login-page *[style*="purple"]:is(button, .btn, input[type="submit"]),
+.login-page *[style*="#667eea"]:is(button, .btn, input[type="submit"]),
+.login-page *[style*="rgb(102, 126, 234)"]:is(button, .btn, input[type="submit"]) {
     background-color: #26A17B !important;
     border-color: #26A17B !important;
+}
+
+/* Поля ввода должны оставаться серыми */
+.login-page input[type="text"],
+.login-page input[type="password"],
+.login-page input[type="email"],
+.login-page .form-control {
+    background-color: #2d3136 !important;
+    background: #2d3136 !important;
 }
 
 /* Кнопка входа - зеленый цвет */

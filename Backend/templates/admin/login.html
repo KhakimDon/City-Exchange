@@ -66,7 +66,10 @@
     }
     
     /* Поля ввода - серый фон, без видимой рамки */
-    .form-control {
+    .form-control,
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
         background-color: #2d3136 !important;
         border: none !important;
         border-radius: 8px !important;
@@ -75,12 +78,23 @@
         font-size: 14px !important;
     }
     
-    .form-control:focus {
+    .form-control:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
         background-color: #2d3136 !important;
         border: none !important;
         color: white !important;
         box-shadow: none !important;
         outline: none !important;
+    }
+    
+    /* Убираем зеленый фон с полей ввода, если он был применен */
+    .form-control[style*="#26A17B"],
+    input[type="text"][style*="#26A17B"],
+    input[type="password"][style*="#26A17B"] {
+        background-color: #2d3136 !important;
+        background: #2d3136 !important;
     }
     
     .form-control::placeholder {
@@ -136,11 +150,10 @@
         color: #26A17B !important;
     }
     
-    /* Заменяем фиолетовый фон кнопок на зеленый */
+    /* Заменяем фиолетовый фон ТОЛЬКО кнопок на зеленый (не полей ввода!) */
     .login-page .btn-primary,
     .login-page input[type="submit"],
-    .login-page button[type="submit"],
-    .login-page [class*="primary"]:not(.form-control):not(.form-group) {
+    .login-page button[type="submit"] {
         background-color: #26A17B !important;
         background: #26A17B !important;
         background-image: none !important;
@@ -155,12 +168,14 @@
         border-color: #1d7a5d !important;
     }
     
-    /* Заменяем фиолетовые границы полей ввода */
-    .login-page .form-control[style*="purple"],
-    .login-page .form-control[style*="violet"],
-    .login-page input[style*="purple"],
-    .login-page input[style*="violet"] {
-        border-color: #26A17B !important;
+    /* Поля ввода НЕ должны быть зелеными - только серые! */
+    .login-page .form-control,
+    .login-page input[type="text"],
+    .login-page input[type="password"],
+    .login-page input[type="email"] {
+        background-color: #2d3136 !important;
+        background: #2d3136 !important;
+        background-image: none !important;
     }
     
     /* Переопределяем все возможные фиолетовые цвета от Unfold */
@@ -234,7 +249,7 @@
     
     /* Адаптивность */
     @media (max-width: 480px) {
-        .login-box {
+    .login-box {
             padding: 0 10px !important;
         }
     }
